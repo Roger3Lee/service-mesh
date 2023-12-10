@@ -77,6 +77,50 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/data-source',
+    component: () => import('@/layout/index'),
+    name: 'service-mgt',
+    meta: {
+      title: '服务管理',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: '/data-source/index',
+        component: () => import('@/views/sm-data-source'),
+        name: 'data-source',
+        meta: { title: '数据源管理' }
+      },
+      {
+        path: '/data-source/data-service',
+        component: () => import('@/views/sm-data-source/data-service'),
+        name: 'data-service',
+        meta: { title: '服务管理' }
+      }
+    ]
+  },
+  {
+    path: '/sm-service-mesh',
+    component: () => import('@/layout/index'),
+    meta: {
+      title: '服务编排',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: '/service-mesh/design',
+        component: () => import('@/views/sm-service-mesh/index'),
+        name: 'Menu2',
+        meta: { title: '流程设计' }
+      }, {
+        path: '/service-mesh/auth',
+        component: () => import('@/views/sm-service-mesh/index'),
+        name: 'Menu2',
+        meta: { title: '授权管理' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: () => import('@/layout/index'),
     children: [

@@ -1,0 +1,104 @@
+{
+    "layoutCol": "3",
+    "layoutColWidth": "3fr",
+    "labelWidth": "80px",
+    "disabled": false,
+    "elements": [
+        {
+            "bind": "code",
+            "name": "code1",
+            "label": "編碼",
+            "placeholder": "編碼",
+            "controlType": "input",
+            "type": "text",
+            "rules": [
+                {
+                    "required": true,
+                    "message": "请输入编码",
+                    "trigger": "blur"
+                }
+            ]
+        },
+        {
+            "name": "startDate",
+            "controlType": "date",
+            "type": "date",
+            "placeholder": "時間",
+            "label": "時間",
+            "children": [
+                {
+                    "name": "startTime"
+                }
+            ],
+            "rules": [
+                {
+                    "required": true,
+                    "message": "请输入时间",
+                    "trigger": "blur"
+                }
+            ]
+        },
+        {
+            "name": "select",
+            "controlType": "select",
+            "type": "select",
+            "placeholder": "枚舉",
+            "label": "枚舉",
+            "multiple": false,
+            "sources": [
+                {
+                    "value": "1",
+                    "label": "身份證"
+                },
+                {
+                    "value": "2",
+                    "label": "军官证"
+                }
+            ],
+            "rules": [
+                {
+                    "required": true,
+                    "message": "请输入时间",
+                    "trigger": "change"
+                }
+            ]
+        },
+        {
+            "name": "city",
+            "controlType": "checkbox",
+            "label": "身份證",
+            "falseValue": 0,
+            "trueValue": 1,
+            "children": [
+                {
+                    "value": "1",
+                    "label": "身份證"
+                },
+                {
+                    "value": "2",
+                    "label": "军官证"
+                }
+            ]
+        }
+    ],
+    "data": {
+        "id": 1,
+        "code": "111",
+        "select": "2",
+        "startDate": "2023-01-01"
+    },
+    "buttons": [
+        {
+            "label": "提交",
+            "type": "primary",
+            "click": "submit.valid",
+            "beforeClick": ""
+        },
+        {
+            "label": "清除",
+            "type": "default",
+            "click": "reset",
+            "beforeClick": ""
+        }
+    ]
+}
