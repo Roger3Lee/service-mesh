@@ -79,7 +79,7 @@ export const constantRoutes = [
   {
     path: '/data-source',
     component: () => import('@/layout/index'),
-    name: 'service-mgt',
+    redirect: '/data-source/index',
     meta: {
       title: '服务管理',
       icon: 'nested'
@@ -102,6 +102,7 @@ export const constantRoutes = [
   {
     path: '/sm-service-mesh',
     component: () => import('@/layout/index'),
+    redirect: '/service-mesh/index',
     meta: {
       title: '服务编排',
       icon: 'nested'

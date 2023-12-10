@@ -2,7 +2,7 @@
   <div>
     <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :validators="validators"
       :service="service"></ms-table-page>
-    <ms-modal ref="m-edit" :></ms-modal>
+    <ms-modal ref="m-edit"></ms-modal>
   </div>
 </template>
   
