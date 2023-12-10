@@ -2,30 +2,33 @@
   <div>
     <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :validators="validators"
       :service="service"></ms-table-page>
-    <!-- <ms-modal></ms-modal> -->
+    <ms-modal ref="m-edit" :></ms-modal>
   </div>
 </template>
   
 <script>
 import { getList } from '@/api/table'
 import MsTablePage from '@/components_ms/MsTablePage'
+import MsModal from '@/components_ms/MsModal'
 import config from '@/config/data-source'
 
 export default {
   name: 'Dashboard',
   components: {
-    MsTablePage
+    MsTablePage,
+    MsModal
   },
   data() {
     return {
       tableConfig: {
         ...config.pageTableConfig
         , tableEvents: {
-          deleteItem(id) {
-            console.log("delete", id)
+          deleteItem(row) {
+            console.log("delete", row)
           },
-          editItem(id) {
-            console.log("edit", id)
+          editItem(row) {
+            console.log("edit", row, this)
+            this.$refs["m-edit"].show();
           }
         }
       },

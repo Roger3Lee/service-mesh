@@ -43,6 +43,12 @@ export default {
         MsFormElement
     },
     props: common.formProps,
+    inject: ['$refpage'],
+    provide() {
+        return {
+            $refpage: this.$refpage || this.$parent
+        }
+    },
     data() {
         let fromData = {
             ...defaultFrom, ...this.$props.config

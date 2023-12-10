@@ -1,6 +1,6 @@
 <template>
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-        <ms-form ref="form" :formId="formId" :config="$props.config" :validators="$props.validators" />
+    <el-dialog title="xxx" :visible.sync="dialogVisible">
+        <!-- <ms-form ref="form" :formId="formId" :config="$props.config" :validators="$props.validators" /> -->
         <div slot="footer" class="dialog-footer">
             <el-button @click="modalCancel"> 取 消 </el-button>
             <el-button type=" primary" @click="modalConfirm">确 定</el-button>
@@ -10,20 +10,34 @@
   
 <script>
 import formCommon from '../MsForm/common'
+import MsForm from '../MsForm'
 const defaultConfig = {
 
 }
 export default {
-    name: 'ms-form-modal',
-    props: formCommon.formProps,
+    name: 'ms-modal',
+    components: {
+        MsForm
+    },
+    // props: formCommon.formProps,
+    inject: ['$refpage'],
+    provide() {
+        return {
+            $refpage: this.$refpage || this.$parent
+        }
+    },
     data() {
         return {
-            dialogVisible: false,
-        };
+            dialogVisible: true
+        }
     },
     methods: {
-        modalCancel() {
-            dialogVisible = false
+        show() {
+            debugger
+            this.dialogVisible = true
+        },
+        close() {
+            this.dialogVisible = false
         },
         modalConfirm() {
             this.$refs[this.formId].validate((valid) => {

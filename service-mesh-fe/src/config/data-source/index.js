@@ -81,10 +81,10 @@ export default {
         fixed: "right",
         formatter(h, row, cellValue, index) {
           return (
-            <div>
-              <el-button onClick={() => this.bindEvent("deleteItem", row)}>刪除</el-button>
-              <el-button onClick={() => this.bindEvent("editItem", row)}>編輯</el-button>
-            </div>
+            <span>
+              <el-link href="javascript:void(0)" icon="el-icon-delete" onClick={() => this.bindEvent("deleteItem", row)} type="danger">刪除</el-link>
+              <el-link href="javascript:void(0)" icon="el-icon-edit" onClick={() => this.bindEvent("editItem", row)} type="primary">編輯</el-link>
+            </span>
           );
         },
       },

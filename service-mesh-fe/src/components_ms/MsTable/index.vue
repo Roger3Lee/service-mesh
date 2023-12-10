@@ -63,13 +63,16 @@ export default {
         }
     },
     created() {
+        //加载数据
         if (this.initLoading) {
             this.fetchData(this.$props.config?.defaultParams || {})
         }
     },
+    inject: ['$refpage'],
     provide() {
         return {
-            tableEvents: this.$props.config?.tableEvents || {}
+            tableEvents: this.$props.config?.tableEvents || {},
+            $refpage: this.$refpage || this.$parent
         }
     },
     methods: {

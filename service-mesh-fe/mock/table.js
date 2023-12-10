@@ -9,6 +9,7 @@ const data = Mock.mock({
       name: "@sentence(10)",
       "type|1": ["API", "DB"],
       updateTime: "@datetime",
+      updateBy: "admin",
     },
   ],
 });
@@ -24,7 +25,7 @@ module.exports = [
         code: 20000,
         data: {
           total: items.length,
-          records: items,
+          records: items.slice(0, 10),
         },
       };
     },

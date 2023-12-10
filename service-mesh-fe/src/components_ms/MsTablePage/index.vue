@@ -22,6 +22,12 @@ export default {
         MsForm
     },
     props: common.props,
+    inject: ['$refpage'],
+    provide() {
+        return {
+            $refpage: this.$refpage || this.$parent
+        }
+    },
     methods: {
         calcDefaultParams() {
             return this.$props.tableConfig?.defaultParams || {}

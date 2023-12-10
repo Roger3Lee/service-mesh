@@ -14,7 +14,7 @@ export default {
       type: Function,
     },
   },
-  inject: ['tableEvents'],
+  inject: ['tableEvents', '$refpage'],
   render(h) {
     return this.render.call(this, h, this.row, this.cellValue, this.index)
   },
@@ -22,7 +22,7 @@ export default {
     bindEvent(event, row) {
       let invoker = this.tableEvents[event];
       if (invoker && typeof invoker === 'function') {
-        invoker.call(this, row)
+        invoker.call(this.$refpage, row)
       }
     }
   }
