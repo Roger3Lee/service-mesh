@@ -1,7 +1,7 @@
 <template>
   <div>
     <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :tableOperateButtons="tableOperateButtons"
-      :validators="validators" :service="service" />
+      :validators="validators" :service="service" @ />
     <ms-modal ref="m-edit" />
   </div>
 </template>
