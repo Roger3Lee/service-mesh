@@ -1,31 +1,12 @@
-<template>
-  <div class="dashboard-container">
-    <component :is="currentRole" />
-  </div>
-</template>
+<script lang="ts" setup>
+import { useUserStore } from "@/store/modules/user"
+import Admin from "./components/Admin.vue"
+import Editor from "./components/Editor.vue"
 
-<script>
-import { mapGetters } from 'vuex'
-import adminDashboard from './admin'
-import editorDashboard from './editor'
-
-export default {
-  name: 'Dashboard',
-  components: { adminDashboard, editorDashboard },
-  data() {
-    return {
-      currentRole: 'adminDashboard'
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'roles'
-    ])
-  },
-  created() {
-    if (!this.roles.includes('admin')) {
-      this.currentRole = 'editorDashboard'
-    }
-  }
-}
+const userStore = useUserStore()
+const isAdmin = userStore.roles.includes("admin")
 </script>
+
+<template>
+  <component :is="isAdmin ? Admin : Editor" />
+</template>

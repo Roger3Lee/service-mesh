@@ -1,19 +1,18 @@
 <template>
   <div>
-    <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :validators="validators"
-      :service="service"></ms-table-page>
-    <ms-modal ref="m-edit"></ms-modal>
+    <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :validators="validators" :service="service" />
+    <ms-modal ref="m-edit" />
   </div>
 </template>
-  
+
 <script>
-import { getList } from '@/api/table'
-import MsTablePage from '@/components_ms/MsTablePage'
-import MsModal from '@/components_ms/MsModal'
-import config from '@/config/data-source'
+import { getTableDataApi as getList } from "@/api/table/index"
+import MsTablePage from "@/components_ms/MsTablePage/index.vue"
+import MsModal from "@/components_ms/MsModal/index.vue"
+import config from "@/pageconfigs/data-source/index.jsx"
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   components: {
     MsTablePage,
     MsModal
@@ -21,14 +20,14 @@ export default {
   data() {
     return {
       tableConfig: {
-        ...config.pageTableConfig
-        , tableEvents: {
+        ...config.pageTableConfig,
+        tableEvents: {
           deleteItem(row) {
             console.log("delete", row)
           },
           editItem(row) {
             console.log("edit", row, this)
-            this.$refs["m-edit"].show();
+            this.$refs["m-edit"].show()
           }
         }
       },
@@ -39,9 +38,9 @@ export default {
   },
   methods: {
     submit(data) {
-      console.log('submit', data)
-      alert('submit')
-    },
+      console.log("submit", data)
+      alert("submit")
+    }
   }
 }
 </script>
@@ -57,3 +56,4 @@ export default {
   }
 }
 </style>
+@/pageconfigs/data-source/index.jsx

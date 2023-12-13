@@ -1,32 +1,37 @@
+<script lang="ts" setup>
+import { ref, watch } from "vue"
+import { useUserStore } from "@/store/modules/user"
+
+/** Vue 3.3+ defineEmits 语法 */
+const emit = defineEmits<{
+  change: []
+}>()
+
+const userStore = useUserStore()
+const switchRoles = ref(userStore.roles[0])
+watch(switchRoles, async (value) => {
+  await userStore.changeRoles(value)
+  emit("change")
+})
+</script>
+
 <template>
   <div>
-    <div style="margin-bottom:15px;">
-      Your roles: {{ roles }}
+    <div>你的权限：{{ userStore.roles }}</div>
+    <div class="switch-roles">
+      <span>切换权限：</span>
+      <el-radio-group v-model="switchRoles">
+        <el-radio-button label="editor" />
+        <el-radio-button label="admin" />
+      </el-radio-group>
     </div>
-    Switch roles:
-    <el-radio-group v-model="switchRoles">
-      <el-radio-button label="editor" />
-      <el-radio-button label="admin" />
-    </el-radio-group>
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    roles() {
-      return this.$store.getters.roles
-    },
-    switchRoles: {
-      get() {
-        return this.roles[0]
-      },
-      set(val) {
-        this.$store.dispatch('user/changeRoles', val).then(() => {
-          this.$emit('change')
-        })
-      }
-    }
-  }
+<style lang="scss" scoped>
+.switch-roles {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
 }
-</script>
+</style>
