@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :validators="validators" :service="service" />
+    <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :tableOperateButtons="tableOperateButtons"
+      :validators="validators" :service="service" />
     <ms-modal ref="m-edit" />
   </div>
 </template>
@@ -32,6 +33,7 @@ export default {
         }
       },
       formConfig: config.pageQueryFormConfig,
+      tableOperateButtons: config.tableOperateButtons,
       service: getList,
       validators: config.validators
     }
@@ -56,4 +58,3 @@ export default {
   }
 }
 </style>
-@/pageconfigs/data-source/index.jsx

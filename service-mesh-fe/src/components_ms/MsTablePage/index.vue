@@ -5,19 +5,13 @@
     </el-card>
     <el-card>
       <div class="toolbar-wrapper">
-        <div>
-          <el-button type="primary" :icon="CirclePlus" @click="dialogVisible = true">新增用户</el-button>
-          <el-button type="danger" :icon="Delete">批量删除</el-button>
-        </div>
+        <el-button v-for="(btn, index) in $.props.tableOperateButtons" :key="index" v-bind="btn"
+          @click.prevent="triggerEvent($event, btn.beforeClick)" @click="triggerEvent($event, btn.click)">{{ btn.label
+          }}</el-button>
       </div>
       <div>
-        <ms-table
-          ref="table"
-          :config="$props.tableConfig"
-          :service="$props.service"
-          :responseCallback="$props.responseCallback"
-          :formatters="$props.formatters"
-        />
+        <ms-table ref="table" :config="$props.tableConfig" :service="$props.service"
+          :responseCallback="$props.responseCallback" :formatters="$props.formatters" />
       </div>
     </el-card>
   </div>
@@ -48,7 +42,15 @@ export default {
     },
     reset() {
       this.$refs.table.fetchData(this.$props.tableConfig?.defaultParams)
-    }
+    },
+    triggerEvent(e, event) {
+      // console.log(this, eventName)
+      if (typeof event === "String" && event != "") {
+        this.$emit(eventName, e)
+      } else if (typeof event === 'function') {
+        event.call(this.$refpage, e)
+      }
+    },
   }
 }
 </script>
@@ -57,8 +59,10 @@ export default {
 .page-wrapper {
   margin: 20px;
 }
+
 .search-wrapper {
   margin-bottom: 20px;
+
   :deep(.el-card__body) {
     padding-bottom: 2px;
   }

@@ -46,10 +46,17 @@ export default {
       }
     ]
   },
+  tableOperateButtons:[
+    {
+      label: "新增",
+      type: "primary",
+      click: "submit",
+      icon: CirclePlus
+    }
+  ],
   pageTableConfig: {
     pagination: true,
     defaultParams: {},
-    buttons: [],
     columns: [
       {
         field: "#seq",

@@ -1,12 +1,6 @@
 <template>
-  <el-form-item
-    v-if="evaluateCondition(condition)"
-    :prop="name"
-    :rules="rules"
-    :label="label"
-    label-position="left"
-    :label-width="labelWidth"
-  >
+  <el-form-item v-if="evaluateCondition(condition)" :prop="name" :rules="rules" :label="label" label-position="left"
+    :label-width="labelWidth">
     <el-select v-model="modelData[name]" v-bind="$data" @change="valueChange">
       <el-option v-for="item in sources" :key="item.value" :label="item.label" :value="item.value" />
     </el-select>
@@ -43,8 +37,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.el-select {
-  display: block;
-}
-</style>
