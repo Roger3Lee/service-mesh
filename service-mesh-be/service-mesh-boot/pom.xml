@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.artframework</groupId>
-        <artifactId>domain-dependencies</artifactId>
+        <artifactId>service-mesh-dependencies</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../service-mesh-dependencies/pom.xml</relativePath>
     </parent>
-
-    <artifactId>domain-sample</artifactId>
+    <artifactId>service-mesh-boot</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,36 +19,25 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.artframework</groupId>
-            <artifactId>domain-dependencies</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>pom</type>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.14</version>
         </dependency>
         <dependency>
             <groupId>com.artframework</groupId>
             <artifactId>domain-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.6.15</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>5.3.9</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>5.3.9</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.3.9</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

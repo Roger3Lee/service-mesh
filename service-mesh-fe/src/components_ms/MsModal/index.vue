@@ -1,9 +1,9 @@
 <template>
-  <el-dialog title="xxx" v-model:visible="dialogVisible">
-    <!-- <ms-form ref="form" :formId="formId" :config="$props.config" :validators="$props.validators" /> -->
+  <el-dialog title="xxx" v-model="dialogVisible">
+    <ms-form ref="form" :formId="formId" :config="$props.config" :validators="$props.validators" />
     <div slot="footer" class="dialog-footer">
-      <el-button @click="modalCancel"> 取 消 </el-button>
-      <el-button type=" primary" @click="modalConfirm">确 定</el-button>
+      <el-button @click="dialogVisible = false"> 取消 </el-button>
+      <el-button type="primary" @click="handleConfirm">确定</el-button>
     </div>
   </el-dialog>
 </template>
@@ -35,7 +35,7 @@ export default {
     close() {
       this.dialogVisible = false
     },
-    modalConfirm() {
+    handleConfirm() {
       this.$refs[this.formId].validate((valid) => {
         if (valid) {
           this.$emit("confirm", this.$refs.form.data, (result) => {
@@ -53,7 +53,6 @@ export default {
         .then((_) => {
           done()
         })
-        .catch((_) => {})
     }
   }
 }

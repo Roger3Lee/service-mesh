@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.artframework</groupId>
-    <artifactId>domain-generator-parent</artifactId>
+    <artifactId>service-mesh-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>domain-generator</name>
@@ -19,10 +19,8 @@
     </properties>
 
     <modules>
-        <module>domain-dependencies</module>
-        <module>domain-generator</module>
-        <module>domain-core</module>
-        <module>domain-sample</module>
+        <module>service-mesh-dependencies</module>
+        <module>service-mesh-boot</module>
     </modules>
 
     <dependencyManagement>

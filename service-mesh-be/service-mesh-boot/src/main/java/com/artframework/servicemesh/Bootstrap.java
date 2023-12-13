@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-@MapperScan(basePackages = "com.artframework.sample.mappers")
+@MapperScan(basePackages = "com.artframework.servicemesh.mappers")
 public class Bootstrap {
 
     public static void main(String[] args) {

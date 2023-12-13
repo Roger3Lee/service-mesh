@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="domain-sample" />
+        <module name="service-mesh-boot" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="domain-dependencies" target="1.8" />
+      <module name="domain-sample" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
