@@ -1,6 +1,12 @@
 <domains>
-    <domain name="user" description="用戶域" main-table="user_info">
-        <related table="user_address" many="false" fk="id:user_id"/>
-        <related table="user_family_member" many="true" fk="id:user_id"/>
+    <domain name="serviceFlow" description="服務編排流程" main-table="svc_mesh_flow">
+        <related table="svc_mesh_flow_config" many="false" fk="id:flow_id"/>
+        <related table="svc_mesh_flow_node" many="true" fk="id:flow_id"/>
+        <related table="svc_mesh_flow_invoke_log" many="true" fk="id:flow_id"/>
+    </domain>
+     <domain name="service" description="服務" main-table="svc_mesh_service">
+        <related table="svc_mesh_datasource" many="false" fk="datasource_id:id"/>
+    </domain>
+     <domain name="datasource" description="數據源" main-table="svc_mesh_datasource">
     </domain>
 </domains>

@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.6.3",
   "createdTime": "2023-9-17 19:10:44",
-  "updatedTime": "2023-11-30 16:39:00",
+  "updatedTime": "2023-12-14 15:33:19",
   "dbConns": [],
   "profile": {
     "default": {
@@ -783,7 +783,7 @@
           "codeRoot": ""
         }
       },
-      "defKey": "svc_mesh_invoke_log",
+      "defKey": "svc_mesh_flow_invoke_log",
       "defName": "服務調用記錄",
       "comment": "",
       "properties": {
@@ -2738,7 +2738,191 @@
       "id": "3E948CEC-3070-472C-AF92-F3CA11EC9D15"
     }
   ],
-  "diagrams": [],
+  "diagrams": [
+    {
+      "defKey": "服務編排",
+      "defName": "",
+      "relationType": "field",
+      "canvasData": {
+        "cells": [
+          {
+            "id": "4c96fc47-b56b-4fb2-9e11-394e251fdc51",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "b90d6915-a801-4591-8577-35440f4f19f3",
+              "port": "EF9B060F-F479-4B56-A057-4CDE58B57BE8%out"
+            },
+            "target": {
+              "cell": "48118c00-f4a7-45bf-b137-3129d6e974a6",
+              "port": "54A708F3-87BD-4DCA-828A-670259F898E1%out"
+            },
+            "relation": "1:1",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "e5e11890-6ffa-485d-a753-81b0e1e49783",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "b90d6915-a801-4591-8577-35440f4f19f3",
+              "port": "EF9B060F-F479-4B56-A057-4CDE58B57BE8%out"
+            },
+            "target": {
+              "cell": "dcfffa7d-f148-4c2e-96bb-36cc75a70ab6",
+              "port": "DB3712B2-AF25-4A09-A7FA-364B06EC3B83%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "dcfffa7d-f148-4c2e-96bb-36cc75a70ab6",
+            "shape": "table",
+            "position": {
+              "x": 320,
+              "y": -236
+            },
+            "count": 0,
+            "originKey": "834631B1-E604-4AB1-B095-E9401C0F23DC",
+            "size": {
+              "width": 619.78125,
+              "height": 353
+            }
+          },
+          {
+            "id": "48118c00-f4a7-45bf-b137-3129d6e974a6",
+            "shape": "table",
+            "position": {
+              "x": -203.609375,
+              "y": 190
+            },
+            "count": 0,
+            "originKey": "433574CF-3BC4-4EDA-93CF-1B6C3A7E095E",
+            "size": {
+              "width": 409,
+              "height": 284
+            }
+          },
+          {
+            "id": "1068dadb-3cf3-4ae5-ae53-5ac65cd08754",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "b90d6915-a801-4591-8577-35440f4f19f3",
+              "port": "EF9B060F-F479-4B56-A057-4CDE58B57BE8%out"
+            },
+            "target": {
+              "cell": "a8d1d550-7455-48d7-b1ec-6c05c3a77cf7",
+              "port": "F3FD9DAB-01FA-4E30-AEB9-F004D5C01009%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "b90d6915-a801-4591-8577-35440f4f19f3",
+            "shape": "table",
+            "position": {
+              "x": -260,
+              "y": -190
+            },
+            "count": 0,
+            "originKey": "07C2C734-93CA-43BC-8F44-E2432A3E4D23",
+            "size": {
+              "width": 415.78125,
+              "height": 307
+            }
+          },
+          {
+            "id": "a8d1d550-7455-48d7-b1ec-6c05c3a77cf7",
+            "shape": "table",
+            "position": {
+              "x": 340,
+              "y": 160
+            },
+            "count": 0,
+            "originKey": "00016855-301F-46CD-8022-2E4AB6AC02FD",
+            "size": {
+              "width": 491.78125,
+              "height": 376
+            }
+          },
+          {
+            "id": "bd347cc3-cdaf-4c44-9973-689037e4413d",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "e3aafd96-14fd-4843-9084-725de854a5fa",
+              "port": "B2CC0AE7-A490-40DA-B4DC-8254E52CE581%out"
+            },
+            "target": {
+              "cell": "7cf840e4-d7a0-4300-ab90-7b870d7b9970",
+              "port": "071EAE5D-52E9-44A0-B81D-EC14B5299787%in"
+            },
+            "relation": "1:1",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "7cf840e4-d7a0-4300-ab90-7b870d7b9970",
+            "shape": "table",
+            "position": {
+              "x": 205,
+              "y": 556
+            },
+            "count": 0,
+            "originKey": "05DA2EB8-F6D2-48DA-A8C1-CDBECD92F702",
+            "size": {
+              "width": 415.375,
+              "height": 307
+            }
+          },
+          {
+            "id": "e3aafd96-14fd-4843-9084-725de854a5fa",
+            "shape": "table",
+            "position": {
+              "x": -310,
+              "y": 556
+            },
+            "count": 0,
+            "originKey": "FE9C1FB1-618E-48A6-B53D-D45EE7C3269C",
+            "size": {
+              "width": 415.375,
+              "height": 353
+            }
+          }
+        ]
+      },
+      "id": "C2960C18-E1B9-4CFF-A177-77E4DF2EFBE6",
+      "comment": ""
+    }
+  ],
   "standardFields": [],
   "dbConn": [
     {
