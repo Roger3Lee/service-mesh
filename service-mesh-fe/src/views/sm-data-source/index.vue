@@ -1,7 +1,7 @@
 <template>
   <div>
     <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :tableOperateButtons="tableOperateButtons"
-      :validators="validators" :service="service" @ />
+      :validators="validators" :service="service" @addItem="addItem" />
     <ms-modal ref="m-edit" />
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
     submit(data) {
       console.log("submit", data)
       alert("submit")
+    },
+    addItem() {
+      this.$refs["m-edit"].show();
     }
   }
 }
