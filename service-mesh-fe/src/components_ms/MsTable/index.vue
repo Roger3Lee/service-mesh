@@ -1,26 +1,12 @@
 <template>
   <div>
     <div class="table-wrapper">
-      <el-table
-        :v-loading="loading"
-        :data="list"
-        :element-loading-text="loadingText"
-        border
-        fit
-        highlight-current-row
-        :max-height="height"
-        :stripe="stripe"
-        :header-row-class-name="headerClass"
-      >
+      <el-table :v-loading="loading" :data="list" :element-loading-text="loadingText" border fit highlight-current-row
+        :max-height="height" :stripe="stripe" :header-row-class-name="headerClass">
         <el-table-column v-for="(column, index) in columns" :key="index" :prop="column.field" v-bind="column">
           <template #default="scope">
-            <col-template
-              v-if="typeof column.formatter === 'function'"
-              :render="column.formatter"
-              :row="scope.row"
-              :index="scope.$index"
-              :cellValue="scope.row[column.field]"
-            />
+            <col-template v-if="typeof column.formatter === 'function'" :render="column.formatter" :row="scope.row"
+              :index="scope.$index" :cellValue="scope.row[column.field]" />
             <span v-else v-html="scope.row[column.field]" />
           </template>
         </el-table-column>
@@ -28,16 +14,9 @@
     </div>
     <!-- 分页器 -->
     <div v-if="pagination" class="pager-wrapper">
-      <el-pagination
-        align="center"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="pageConfig.currentPage"
-        :page-sizes="pageConfig.pageSizeSetting"
-        :page-size="pageConfig.pageSize"
-        :layout="pageConfig.pageLayout"
-        :total="pageConfig.total"
-      />
+      <el-pagination align="center" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+        :current-page="pageConfig.currentPage" :page-sizes="pageConfig.pageSizeSetting" :page-size="pageConfig.pageSize"
+        :layout="pageConfig.pageLayout" :total="pageConfig.total" />
     </div>
   </div>
 </template>
@@ -104,7 +83,7 @@ export default {
       if (this.pagination) {
         params = {
           ...params,
-          ...{ currentPage: this.pageConfig.currentPage, pageSize: this.pageConfig.pageSize }
+          ...{ pageNum: this.pageConfig.currentPage, pageSize: this.pageConfig.pageSize }
         }
       }
       this.loading = true
