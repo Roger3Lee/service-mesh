@@ -34,8 +34,8 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       strictPort: false,
       /** 接口代理 */
       proxy: {
-        "/api/v1": {
-          target: "https://www.fastmock.site/mock/761e2dda2b8890ab86c928a74e8f6538",
+        "/service-mesh": {
+          target: "http://localhost:8080",
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true

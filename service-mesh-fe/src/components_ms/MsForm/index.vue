@@ -1,28 +1,15 @@
 <template>
   <div style="margin: 20px">
     <el-form :ref="$props.formId" :model="model">
-      <div
-        class="grid-container"
-        :style="{ 'grid-template-columns': 'repeat(' + layoutCol + ',' + layoutColWidth + ')' }"
-      >
-        <ms-form-element
-          v-for="(element, index) in elements"
-          :key="index"
-          :element="elementItem(element)"
-          :model="model"
-          :validators="$props.validators"
-          @changed="valueChange"
-        />
+      <div class="grid-container"
+        :style="{ 'grid-template-columns': 'repeat(' + layoutCol + ',' + layoutColWidth + ')' }">
+        <ms-form-element v-for="(element, index) in elements" :key="index" :element="elementItem(element)" :model="model"
+          :validators="$props.validators" @changed="valueChange" />
       </div>
       <el-form-item :style="{ 'margin-left': labelWidth }">
-        <el-button
-          v-for="(btn, index) in buttons"
-          :key="index"
-          v-bind="btn"
-          @click.prevent="triggerEvent($event, btn.beforeClick)"
-          @click="triggerEvent($event, btn.click)"
-          >{{ btn.label }}</el-button
-        >
+        <el-button v-for="(btn, index) in buttons" :key="index" v-bind="btn"
+          @click.prevent="triggerEvent($event, btn.beforeClick)" @click="triggerEvent($event, btn.click)">{{ btn.label
+          }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -81,6 +68,11 @@ export default {
     return { ...fromData, ...{ model: { ...fromData.data, ...dataExt } } }
   },
   methods: {
+    validate(callback: Function) {
+      this.$refs[this.$props.formId].validate((valid: Boolean) => {
+        callback.apply(this, [valid, this.data])
+      })
+    },
     triggerEvent(e, eventName) {
       // console.log(this, eventName)
       if (typeof eventName === "string" && eventName != "") {

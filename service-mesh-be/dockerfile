@@ -1,0 +1,6 @@
+FROM openjdk:17
+COPY ./service-mesh-boot/target/app.jar /home
+WORKDIR /home
+CMD chmod 777 app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","./app.jar"]

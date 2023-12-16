@@ -44,9 +44,8 @@ export default {
       this.$refs.table.fetchData(this.$props.tableConfig?.defaultParams)
     },
     triggerEvent(e, event) {
-      // console.log(this, eventName)
-      if (typeof event === "String" && event != "") {
-        this.$emit(eventName, e)
+      if (typeof event === "string" && event != "") {
+        this.$emit(event, e)
       } else if (typeof event === 'function') {
         event.call(this.$refpage, e)
       }

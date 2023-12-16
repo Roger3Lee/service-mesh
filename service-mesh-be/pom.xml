@@ -20,6 +20,7 @@
 
     <modules>
         <module>service-mesh-dependencies</module>
+        <module>service-mesh-core</module>
         <module>service-mesh-boot</module>
     </modules>
 

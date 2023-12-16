@@ -46,7 +46,7 @@ export default {
       }
     ]
   },
-  tableOperateButtons:[
+  tableOperateButtons: [
     {
       label: "新增",
       type: "primary",
@@ -104,7 +104,7 @@ export default {
               <el-link
                 href="javascript:void(0)"
                 icon="el-icon-edit"
-                onClick={() => this.bindEvent("editItem", row)}
+                onClick={() => this.bindEvent("editItemDialogShow", row)}
                 type="primary"
               >
                 編輯
@@ -116,13 +116,12 @@ export default {
     ]
   },
   createFormConfig: {
-    layoutCol: "3",
+    layoutCol: "1",
     elements: [
       {
         name: "code",
         label: "編碼",
         placeholder: "編碼",
-        controlType: "input",
         type: "text",
         rules: [
           {
@@ -140,7 +139,6 @@ export default {
         name: "name",
         label: "名称",
         placeholder: "名称",
-        controlType: "input",
         rules: [
           {
             required: true,
@@ -158,7 +156,6 @@ export default {
         controlType: "select",
         placeholder: "类型",
         label: "类型",
-        multiple: true,
         sources: type,
         rules: [
           {
@@ -185,18 +182,6 @@ export default {
         label: "描述",
         controlType: "textarea"
       }
-    ],
-    buttons: [
-      {
-        label: "提交",
-        type: "primary",
-        click: "submit"
-      },
-      {
-        label: "取消",
-        type: "default",
-        click: "cancel"
-      }
     ]
   },
   editFormConfig: {
@@ -206,7 +191,6 @@ export default {
         name: "code",
         label: "編碼",
         placeholder: "編碼",
-        controlType: "input",
         type: "text",
         disabled: true
       },
@@ -214,7 +198,6 @@ export default {
         name: "name",
         label: "名称",
         placeholder: "名称",
-        controlType: "input",
         rules: [
           {
             required: true,
@@ -232,7 +215,6 @@ export default {
         controlType: "select",
         placeholder: "类型",
         label: "类型",
-        multiple: true,
         sources: type,
         disabled: true,
         rules: [

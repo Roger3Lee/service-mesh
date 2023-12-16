@@ -1,6 +1,6 @@
 <template>
-  <el-dialog title="xxx" v-model="dialogVisible">
-    <ms-form ref="form" :formId="formId" :config="$props.config" :validators="$props.validators" />
+  <el-dialog :title="$props.title" v-model="dialogVisible">
+    <ms-form ref="dialogForm" :formId="$props.formId" :config="$props.config" :validators="$props.validators" />
     <div slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false"> 取消 </el-button>
       <el-button type="primary" @click="handleConfirm">确定</el-button>
@@ -9,13 +9,20 @@
 </template>
 
 <script>
+import formCommon from "../MsForm/common.jsx"
 import MsForm from "../MsForm/index.vue"
 export default {
   name: "ms-modal",
   components: {
     MsForm
   },
-  // props: formCommon.formProps,
+  props: {
+    title: {
+      type: String,
+      require: true
+    },
+    ...formCommon.formProps
+  },
   inject: ["$refpage"],
   provide() {
     return {
@@ -24,21 +31,20 @@ export default {
   },
   data() {
     return {
-      dialogVisible: true
+      dialogVisible: false
     }
   },
   methods: {
     show() {
-      debugger
       this.dialogVisible = true
     },
     close() {
       this.dialogVisible = false
     },
     handleConfirm() {
-      this.$refs[this.formId].validate((valid) => {
+      this.$refs.dialogForm.validate((valid, data) => {
         if (valid) {
-          this.$emit("confirm", this.$refs.form.data, (result) => {
+          this.$emit("confirm", data, (result) => {
             //当回调confirm返回true时，关闭窗口
             if (result) {
               dialogVisible = false
