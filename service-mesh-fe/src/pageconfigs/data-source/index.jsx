@@ -50,7 +50,7 @@ export default {
     {
       label: "新增",
       type: "primary",
-      click: "addItem",
+      click: "addItemDialogShow",
       icon: CirclePlus
     }
   ],

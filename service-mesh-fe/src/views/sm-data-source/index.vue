@@ -1,8 +1,7 @@
 <template>
   <div>
     <ms-table-page ref="tablePage" :formConfig="formConfig" :tableConfig="tableConfig"
-      :tableOperateButtons="tableOperateButtons" :service="service" @addItem="addItemDialogShow" @deleteItem="deleteItem"
-      @editItem="editItemDialogShow" />
+      :tableOperateButtons="tableOperateButtons" :service="service" />
     <ms-modal ref="addDialog" title="新增" :config="createFormConfig" @confirm="addItem" :validators="validators" />
     <ms-modal ref="editDialog" title="修改" :config="createFormConfig" @confirm="editItem" :validators="validators" />
   </div>

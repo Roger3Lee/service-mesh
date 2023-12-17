@@ -28,8 +28,9 @@ export default {
   props: common.props,
   inject: ["$refpage"],
   provide() {
+    this._refpage = this.$refpage || this.$parent
     return {
-      $refpage: this.$refpage || this.$parent
+      $refpage: this._refpage
     }
   },
   methods: {
@@ -47,9 +48,13 @@ export default {
     },
     triggerEvent(e, event) {
       if (typeof event === "string" && event != "") {
-        this.$emit(event, e)
+        if (this._refpage && this._refpage[event]) {
+          this._refpage[event].call(this._refpage, e)
+        } else {
+          this.$emit(event, e)
+        }
       } else if (typeof event === 'function') {
-        event.call(this.$refpage, e)
+        event.call(this._refpage, e)
       }
     },
   }
