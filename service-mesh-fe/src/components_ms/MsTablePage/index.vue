@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <el-card class="search-wrapper">
-      <ms-form :config="$props.formConfig" :validators="$props.validators" @submit="submit" @reset="reset" />
+      <ms-form ref="form" :config="$props.formConfig" :validators="$props.validators" @submit="submit" @reset="reset" />
     </el-card>
     <el-card>
       <div class="toolbar-wrapper">
@@ -9,10 +9,9 @@
           @click.prevent="triggerEvent($event, btn.beforeClick)" @click="triggerEvent($event, btn.click)">{{ btn.label
           }}</el-button>
       </div>
-      <div>
-        <ms-table ref="table" :config="$props.tableConfig" :service="$props.service"
-          :responseCallback="$props.responseCallback" :formatters="$props.formatters" />
-      </div>
+      <ms-table ref="table" :config="$props.tableConfig" :service="$props.service"
+        :responseCallback="$props.responseCallback" :formatters="$props.formatters" :v-bind="$attrs" />
+
     </el-card>
   </div>
 </template>
@@ -34,6 +33,9 @@ export default {
     }
   },
   methods: {
+    reloadTable() {
+      this.submit(this.$refs.form.formData())
+    },
     calcDefaultParams() {
       return this.$props.tableConfig?.defaultParams || {}
     },

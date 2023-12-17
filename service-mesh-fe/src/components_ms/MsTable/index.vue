@@ -73,12 +73,12 @@ export default {
   inject: ["$refpage"],
   provide() {
     return {
-      tableEvents: this.$props.config?.tableEvents || {},
       $refpage: this.$refpage || this.$parent
     }
   },
   methods: {
     fetchData(params) {
+      params = params ?? this._params;
       this._params = params
       if (this.pagination) {
         params = {

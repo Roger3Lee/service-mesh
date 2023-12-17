@@ -68,6 +68,9 @@ export default {
     return { ...fromData, ...{ model: { ...fromData.data, ...dataExt } } }
   },
   methods: {
+    formData() {
+      return this.data;
+    },
     validate(callback: Function) {
       this.$refs[this.$props.formId].validate((valid: Boolean) => {
         callback.apply(this, [valid, this.data])

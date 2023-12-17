@@ -13,15 +13,22 @@ export default {
       type: Function
     }
   },
-  inject: ["tableEvents", "$refpage"],
+  inject: ["$refpage"],
   render(h) {
     return this.render.call(this, h, this.row, this.cellValue, this.index)
   },
   methods: {
-    bindEvent(event, row) {
-      const invoker = this.tableEvents[event]
+    $trigger(event, args) {
+      let invoker = event;
+      if (typeof event === "string") {
+        invoker = this.$refpage[event]
+      }
       if (invoker && typeof invoker === "function") {
-        invoker.call(this.$refpage, row)
+        if (Array.isArray(args)) {
+          invoker.apply(this.$refpage, args)
+        } else {
+          invoker.call(this.$refpage, args)
+        }
       }
     }
   }

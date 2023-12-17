@@ -1,7 +1,8 @@
 <template>
   <div>
-    <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :tableOperateButtons="tableOperateButtons"
-      :service="service" @addItem="addItemDialogShow" />
+    <ms-table-page ref="tablePage" :formConfig="formConfig" :tableConfig="tableConfig"
+      :tableOperateButtons="tableOperateButtons" :service="service" @addItem="addItemDialogShow" @deleteItem="deleteItem"
+      @editItem="editItemDialogShow" />
     <ms-modal ref="addDialog" title="新增" :config="createFormConfig" @confirm="addItem" :validators="validators" />
     <ms-modal ref="editDialog" title="修改" :config="createFormConfig" @confirm="editItem" :validators="validators" />
   </div>
@@ -24,20 +25,7 @@ export default {
   data() {
     return {
       tableConfig: {
-        ...config.pageTableConfig,
-        tableEvents: {
-          deleteItem(row: any) {
-            DS.deleteItem(row.id).then(resp => {
-              if (resp.code !== 0) {
-                ElMessage.error(resp.message)
-              }
-            })
-          },
-          editItem(row: any) {
-            console.log("edit", row, this)
-            this.$refs.editDialog.show()
-          }
-        }
+        ...config.pageTableConfig
       },
       formConfig: config.pageQueryFormConfig,
       tableOperateButtons: config.tableOperateButtons,
@@ -58,7 +46,8 @@ export default {
     addItem(data: any, callback: Function) {
       DS.createItem(data).then(resp => {
         if (resp.code === 0) {
-          return callback(true)
+          callback(true)
+          this.reloadData();
         } else {
           ElMessage.error(resp.message)
         }
@@ -68,6 +57,22 @@ export default {
       DS.updateItem(data).then(resp => {
         return callback(true)
       });
+    },
+    deleteItem(row: any) {
+      DS.deleteItem(row.id).then(resp => {
+        if (resp.code !== 0) {
+          ElMessage.error(resp.message)
+        } else {
+          this.reloadData();
+        }
+      })
+    },
+    editItemDialogShow(row: any) {
+      console.log("edit", row, this)
+      this.$refs.editDialog.show()
+    },
+    reloadData() {
+      this.$refs.tablePage.reloadTable();
     }
   }
 }

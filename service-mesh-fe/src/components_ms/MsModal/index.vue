@@ -47,7 +47,7 @@ export default {
           this.$emit("confirm", data, (result) => {
             //当回调confirm返回true时，关闭窗口
             if (result) {
-              dialogVisible = false
+              this.dialogVisible = false
             }
           })
           return

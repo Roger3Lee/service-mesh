@@ -96,7 +96,7 @@ export default {
               <el-link
                 href="javascript:void(0)"
                 icon="el-icon-delete"
-                onClick={() => this.bindEvent("deleteItem", row)}
+                onClick={() => { this.$trigger("deleteItem", [row]) }}
                 type="danger"
               >
                 刪除
@@ -104,7 +104,7 @@ export default {
               <el-link
                 href="javascript:void(0)"
                 icon="el-icon-edit"
-                onClick={() => this.bindEvent("editItemDialogShow", row)}
+                onClick={() => this.$trigger("editItemDialogShow", [row])}
                 type="primary"
               >
                 編輯
