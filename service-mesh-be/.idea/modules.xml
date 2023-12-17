@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/service-mesh-boot/service-mesh-boot.iml" filepath="$PROJECT_DIR$/service-mesh-boot/service-mesh-boot.iml" />
-    </modules>
-  </component>
-</project>
