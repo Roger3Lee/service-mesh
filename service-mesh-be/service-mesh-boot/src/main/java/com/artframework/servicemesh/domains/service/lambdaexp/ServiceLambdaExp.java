@@ -16,7 +16,7 @@ import java.io.Serializable;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-14 21:13:24
+* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -48,7 +48,7 @@ public class ServiceLambdaExp{
         /**
         * RELATE user_address lambda
         */
-        public static BiConsumer<ServiceDTO.SvcMeshDatasourceDTO,java.math.BigDecimal> svcMeshDatasourceTargetSetLambda =ServiceDTO.SvcMeshDatasourceDTO::setId;
+        public static BiConsumer<ServiceDTO.SvcMeshDatasourceDTO,Long> svcMeshDatasourceTargetSetLambda =ServiceDTO.SvcMeshDatasourceDTO::setId;
 
         /**
         * RELATE svc_mesh_datasource lambda

@@ -37,10 +37,10 @@ public class DatasourceController {
     /**
     * 新增
     * @param request 请求体
-    * @return java.math.BigDecimal
+    * @return Long
     */
     @PutMapping()
-    public java.math.BigDecimal insert(@RequestBody DatasourceCreateRequest request){
+    public Long insert(@RequestBody DatasourceCreateRequest request){
         return datasourceService.insert(request);
     }
 
@@ -60,7 +60,7 @@ public class DatasourceController {
     * @return 成功OR失败
     */
     @DeleteMapping
-    public Boolean delete(@RequestParam("key") java.math.BigDecimal key){
+    public Boolean delete(@RequestParam("key") Long key){
         return datasourceService.delete(key);
     }
 }

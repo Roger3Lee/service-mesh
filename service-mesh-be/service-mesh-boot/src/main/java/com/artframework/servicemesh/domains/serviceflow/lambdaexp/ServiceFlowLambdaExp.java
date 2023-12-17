@@ -16,7 +16,7 @@ import java.io.Serializable;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-14 21:13:24
+* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -48,7 +48,7 @@ public class ServiceFlowLambdaExp{
         /**
         * RELATE user_address lambda
         */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowConfigDTO,java.math.BigDecimal> svcMeshFlowConfigTargetSetLambda =ServiceFlowDTO.SvcMeshFlowConfigDTO::setFlowId;
+        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowConfigDTO,Long> svcMeshFlowConfigTargetSetLambda =ServiceFlowDTO.SvcMeshFlowConfigDTO::setFlowId;
 
         /**
         * RELATE svc_mesh_flow_config lambda
@@ -70,7 +70,7 @@ public class ServiceFlowLambdaExp{
         /**
         * RELATE user_address lambda
         */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowNodeDTO,java.math.BigDecimal> svcMeshFlowNodeTargetSetLambda =ServiceFlowDTO.SvcMeshFlowNodeDTO::setFlowId;
+        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowNodeDTO,Long> svcMeshFlowNodeTargetSetLambda =ServiceFlowDTO.SvcMeshFlowNodeDTO::setFlowId;
 
         /**
         * RELATE svc_mesh_flow_node lambda
@@ -92,7 +92,7 @@ public class ServiceFlowLambdaExp{
         /**
         * RELATE user_address lambda
         */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO,java.math.BigDecimal> svcMeshFlowInvokeLogTargetSetLambda =ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::setFlowId;
+        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO,Long> svcMeshFlowInvokeLogTargetSetLambda =ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::setFlowId;
 
         /**
         * RELATE svc_mesh_flow_invoke_log lambda

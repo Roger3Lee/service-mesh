@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/service-mesh-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-mesh-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-mesh-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-mesh-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-mesh-dependencies/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-mesh-dependencies/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

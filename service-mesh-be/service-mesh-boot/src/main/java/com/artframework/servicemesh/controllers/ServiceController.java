@@ -37,10 +37,10 @@ public class ServiceController {
     /**
     * 新增
     * @param request 请求体
-    * @return java.math.BigDecimal
+    * @return Long
     */
     @PutMapping()
-    public java.math.BigDecimal insert(@RequestBody ServiceCreateRequest request){
+    public Long insert(@RequestBody ServiceCreateRequest request){
         return serviceService.insert(request);
     }
 
@@ -60,7 +60,7 @@ public class ServiceController {
     * @return 成功OR失败
     */
     @DeleteMapping
-    public Boolean delete(@RequestParam("key") java.math.BigDecimal key){
+    public Boolean delete(@RequestParam("key") Long key){
         return serviceService.delete(key);
     }
 }

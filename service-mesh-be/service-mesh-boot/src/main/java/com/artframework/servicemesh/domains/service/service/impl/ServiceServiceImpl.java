@@ -62,16 +62,16 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public java.math.BigDecimal insert(ServiceCreateRequest request){
+    public Long insert(ServiceCreateRequest request){
         //插入关联数据svc_mesh_datasource
         if(ObjectUtil.isNotNull(request.getSvcMeshDatasource())){
             Serializable key = ServiceLambdaExp.svcMeshDatasourceSourceLambda.apply(request);
-            ServiceLambdaExp.svcMeshDatasourceTargetSetLambda.accept(request.getSvcMeshDatasource(),(java.math.BigDecimal)key);
+            ServiceLambdaExp.svcMeshDatasourceTargetSetLambda.accept(request.getSvcMeshDatasource(),(Long)key);
             svcMeshDatasourceRepository.insert(request.getSvcMeshDatasource());
         }
         //插入数据
         ServiceDTO dto = serviceRepository.insert(request);
-        return (java.math.BigDecimal) ServiceLambdaExp.dtoKeyLambda.apply(dto);
+        return (Long) ServiceLambdaExp.dtoKeyLambda.apply(dto);
     }
 
     /**
@@ -87,7 +87,7 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
         if(ObjectUtil.isNotNull(request.getLoadFlag()) && request.getLoadFlag().getLoadSvcMeshDatasource()
             && ObjectUtil.isNotNull(request.getSvcMeshDatasource())){
             Serializable key = ServiceLambdaExp.svcMeshDatasourceSourceLambda.apply(request);
-            ServiceLambdaExp.svcMeshDatasourceTargetSetLambda.accept(request.getSvcMeshDatasource(),(java.math.BigDecimal)key);
+            ServiceLambdaExp.svcMeshDatasourceTargetSetLambda.accept(request.getSvcMeshDatasource(),(Long)key);
             if(BooleanUtil.isTrue(request.getSvcMeshDatasource().getChanged())){
                 svcMeshDatasourceRepository.update(request.getSvcMeshDatasource());
             }
@@ -104,7 +104,7 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean delete(java.math.BigDecimal id){
+    public Boolean delete(Long id){
         ServiceDTO old = find(new ServiceFindRequest(id ,new ServiceDTO.LoadFlag()));
 
         //删除关联数据svc_mesh_datasource

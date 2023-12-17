@@ -10,7 +10,7 @@ import lombok.ToString;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-14 21:13:24
+* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -23,12 +23,12 @@ public class SvcMeshFlowNodeDO  {
     * 主鍵
     */
     @TableId(value = "id", type = IdType.AUTO)
-    private java.math.BigDecimal id;
+    private Long id;
     /**
     * 流程ID
     */
     @TableField("flow_id")
-    private java.math.BigDecimal flowId;
+    private Long flowId;
     /**
     * 節點ID
     */

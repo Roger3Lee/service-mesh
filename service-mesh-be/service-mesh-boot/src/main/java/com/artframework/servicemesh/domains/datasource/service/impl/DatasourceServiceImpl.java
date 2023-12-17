@@ -51,10 +51,10 @@ public class DatasourceServiceImpl extends BaseDomainServiceImpl implements Data
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public java.math.BigDecimal insert(DatasourceCreateRequest request){
+    public Long insert(DatasourceCreateRequest request){
         //插入数据
         DatasourceDTO dto = datasourceRepository.insert(request);
-        return (java.math.BigDecimal) DatasourceLambdaExp.dtoKeyLambda.apply(dto);
+        return (Long) DatasourceLambdaExp.dtoKeyLambda.apply(dto);
     }
 
     /**
@@ -77,7 +77,7 @@ public class DatasourceServiceImpl extends BaseDomainServiceImpl implements Data
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean delete(java.math.BigDecimal id){
+    public Boolean delete(Long id){
         return datasourceRepository.deleteById(id) > 0;
     }
 }

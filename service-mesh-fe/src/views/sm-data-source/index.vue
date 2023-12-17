@@ -1,9 +1,9 @@
 <template>
   <div>
     <ms-table-page :formConfig="formConfig" :tableConfig="tableConfig" :tableOperateButtons="tableOperateButtons"
-      :validators="validators" :service="service" @addItem="addItemDialogShow" />
-    <ms-modal ref="m-add" title="新增" :config="createFormConfig" @confirm="addItem" />
-    <ms-modal ref="m-edit" title="修改" :config="createFormConfig" @confirm="editItem" />
+      :service="service" @addItem="addItemDialogShow" />
+    <ms-modal ref="addDialog" title="新增" :config="createFormConfig" @confirm="addItem" :validators="validators" />
+    <ms-modal ref="editDialog" title="修改" :config="createFormConfig" @confirm="editItem" :validators="validators" />
   </div>
 </template>
 
@@ -12,6 +12,8 @@ import * as DS from '@/api/datasource'
 import MsTablePage from "@/components_ms/MsTablePage/index.vue"
 import MsModal from "@/components_ms/MsModal/index.vue"
 import config from "@/pageconfigs/data-source/index.jsx"
+import validators from "@/validators/index.jsx"
+import { ElMessage } from "element-plus"
 
 export default {
   name: "Dashboard",
@@ -24,12 +26,16 @@ export default {
       tableConfig: {
         ...config.pageTableConfig,
         tableEvents: {
-          deleteItem(row: Object) {
-            console.log("delete", row)
+          deleteItem(row: any) {
+            DS.deleteItem(row.id).then(resp => {
+              if (resp.code !== 0) {
+                ElMessage.error(resp.message)
+              }
+            })
           },
-          editItem(row: Object) {
+          editItem(row: any) {
             console.log("edit", row, this)
-            this.$refs["m-edit"].show()
+            this.$refs.editDialog.show()
           }
         }
       },
@@ -38,28 +44,30 @@ export default {
       service: DS.page,
       createFormConfig: config.createFormConfig,
       editFormConfig: config.editFormConfig,
+      validators: validators
     }
   },
   methods: {
-    submit(data: Object) {
+    submit(data: any) {
       console.log("submit", data)
       alert("submit")
     },
     addItemDialogShow() {
-      this.$refs["m-edit"].show();
+      this.$refs.addDialog.show();
     },
-    addItem(data: Object, callback: Function) {
+    addItem(data: any, callback: Function) {
       DS.createItem(data).then(resp => {
-        return callback(true)
+        if (resp.code === 0) {
+          return callback(true)
+        } else {
+          ElMessage.error(resp.message)
+        }
       });
     },
-    editItemDialogShow(data: Object, callback: Function) {
+    editItem(data: any, callback: Function) {
       DS.updateItem(data).then(resp => {
         return callback(true)
       });
-    },
-    deleteItem(data) {
-      debugger
     }
   }
 }

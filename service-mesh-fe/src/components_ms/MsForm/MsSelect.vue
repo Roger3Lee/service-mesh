@@ -15,7 +15,7 @@ const defaultProp = {
   name: "select",
   labelWidth: "80px",
   filterable: true,
-  multiple: true,
+  multiple: false,
   sources: [],
   disabled: false,
   clearable: true,

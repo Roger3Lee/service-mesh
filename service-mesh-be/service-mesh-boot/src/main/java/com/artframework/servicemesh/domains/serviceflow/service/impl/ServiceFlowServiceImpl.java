@@ -78,28 +78,28 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public java.math.BigDecimal insert(ServiceFlowCreateRequest request){
+    public Long insert(ServiceFlowCreateRequest request){
         //插入关联数据svc_mesh_flow_config
         if(ObjectUtil.isNotNull(request.getSvcMeshFlowConfig())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowConfigSourceLambda.apply(request);
-            ServiceFlowLambdaExp.svcMeshFlowConfigTargetSetLambda.accept(request.getSvcMeshFlowConfig(),(java.math.BigDecimal)key);
+            ServiceFlowLambdaExp.svcMeshFlowConfigTargetSetLambda.accept(request.getSvcMeshFlowConfig(),(Long)key);
             svcMeshFlowConfigRepository.insert(request.getSvcMeshFlowConfig());
         }
         //插入关联数据svc_mesh_flow_node
         if(CollUtil.isNotEmpty(request.getSvcMeshFlowNodeList())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowNodeSourceLambda.apply(request);
-            request.getSvcMeshFlowNodeList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowNodeTargetSetLambda.accept(x,(java.math.BigDecimal)key));
+            request.getSvcMeshFlowNodeList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowNodeTargetSetLambda.accept(x,(Long)key));
             svcMeshFlowNodeRepository.insert(request.getSvcMeshFlowNodeList());
         }
         //插入关联数据svc_mesh_flow_invoke_log
         if(CollUtil.isNotEmpty(request.getSvcMeshFlowInvokeLogList())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowInvokeLogSourceLambda.apply(request);
-            request.getSvcMeshFlowInvokeLogList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetSetLambda.accept(x,(java.math.BigDecimal)key));
+            request.getSvcMeshFlowInvokeLogList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetSetLambda.accept(x,(Long)key));
             svcMeshFlowInvokeLogRepository.insert(request.getSvcMeshFlowInvokeLogList());
         }
         //插入数据
         ServiceFlowDTO dto = serviceFlowRepository.insert(request);
-        return (java.math.BigDecimal) ServiceFlowLambdaExp.dtoKeyLambda.apply(dto);
+        return (Long) ServiceFlowLambdaExp.dtoKeyLambda.apply(dto);
     }
 
     /**
@@ -115,7 +115,7 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
         if(ObjectUtil.isNotNull(request.getLoadFlag()) && request.getLoadFlag().getLoadSvcMeshFlowConfig()
             && ObjectUtil.isNotNull(request.getSvcMeshFlowConfig())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowConfigSourceLambda.apply(request);
-            ServiceFlowLambdaExp.svcMeshFlowConfigTargetSetLambda.accept(request.getSvcMeshFlowConfig(),(java.math.BigDecimal)key);
+            ServiceFlowLambdaExp.svcMeshFlowConfigTargetSetLambda.accept(request.getSvcMeshFlowConfig(),(Long)key);
             if(BooleanUtil.isTrue(request.getSvcMeshFlowConfig().getChanged())){
                 svcMeshFlowConfigRepository.update(request.getSvcMeshFlowConfig());
             }
@@ -123,13 +123,13 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
         //更新关联数据svc_mesh_flow_node
         if(CollUtil.isNotEmpty(request.getSvcMeshFlowNodeList())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowNodeSourceLambda.apply(request);
-            request.getSvcMeshFlowNodeList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowNodeTargetSetLambda.accept(x,(java.math.BigDecimal)key));
+            request.getSvcMeshFlowNodeList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowNodeTargetSetLambda.accept(x,(Long)key));
             this.merge(old.getSvcMeshFlowNodeList(), request.getSvcMeshFlowNodeList(), ServiceFlowLambdaExp.svcMeshFlowNodeKeyLambda, svcMeshFlowNodeRepository);
         }
         //更新关联数据svc_mesh_flow_invoke_log
         if(CollUtil.isNotEmpty(request.getSvcMeshFlowInvokeLogList())){
             Serializable key = ServiceFlowLambdaExp.svcMeshFlowInvokeLogSourceLambda.apply(request);
-            request.getSvcMeshFlowInvokeLogList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetSetLambda.accept(x,(java.math.BigDecimal)key));
+            request.getSvcMeshFlowInvokeLogList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetSetLambda.accept(x,(Long)key));
             this.merge(old.getSvcMeshFlowInvokeLogList(), request.getSvcMeshFlowInvokeLogList(), ServiceFlowLambdaExp.svcMeshFlowInvokeLogKeyLambda, svcMeshFlowInvokeLogRepository);
         }
         //更新数据
@@ -144,7 +144,7 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean delete(java.math.BigDecimal id){
+    public Boolean delete(Long id){
         ServiceFlowDTO old = find(new ServiceFlowFindRequest(id ,new ServiceFlowDTO.LoadFlag()));
 
         //删除关联数据svc_mesh_flow_config

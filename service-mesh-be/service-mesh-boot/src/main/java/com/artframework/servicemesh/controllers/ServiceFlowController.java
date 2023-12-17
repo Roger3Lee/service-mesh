@@ -37,10 +37,10 @@ public class ServiceFlowController {
     /**
     * 新增
     * @param request 请求体
-    * @return java.math.BigDecimal
+    * @return Long
     */
     @PutMapping()
-    public java.math.BigDecimal insert(@RequestBody ServiceFlowCreateRequest request){
+    public Long insert(@RequestBody ServiceFlowCreateRequest request){
         return serviceFlowService.insert(request);
     }
 
@@ -60,7 +60,7 @@ public class ServiceFlowController {
     * @return 成功OR失败
     */
     @DeleteMapping
-    public Boolean delete(@RequestParam("key") java.math.BigDecimal key){
+    public Boolean delete(@RequestParam("key") Long key){
         return serviceFlowService.delete(key);
     }
 }

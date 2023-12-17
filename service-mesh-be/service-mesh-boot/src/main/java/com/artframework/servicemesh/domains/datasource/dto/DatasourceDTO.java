@@ -14,7 +14,7 @@ import java.util.Map;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-14 21:13:24
+* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class DatasourceDTO extends BaseDTO {
     /**
     * 主鍵ID
     */
-    private java.math.BigDecimal id;
+    private Long id;
     /**
     * 編碼
     */

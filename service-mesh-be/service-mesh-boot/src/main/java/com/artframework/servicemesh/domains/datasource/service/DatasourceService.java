@@ -26,7 +26,7 @@ public interface DatasourceService extends BaseDomainService {
     * @param request 请求体
     * @return
     */
-    java.math.BigDecimal insert(DatasourceCreateRequest request);
+    Long insert(DatasourceCreateRequest request);
 
     /**
     * 修改
@@ -40,5 +40,5 @@ public interface DatasourceService extends BaseDomainService {
     * @param key 数据ID
     * @return 成功OR失败
     */
-    Boolean delete(java.math.BigDecimal key);
+    Boolean delete(Long key);
 }

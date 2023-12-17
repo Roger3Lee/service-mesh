@@ -9,7 +9,7 @@ import com.artframework.servicemesh.entities.*;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-14 21:13:24
+* @date 2023-12-17 12:20:56
 */
 public interface SvcMeshServiceMapper extends BaseMapper<SvcMeshServiceDO> {
 }

@@ -29,7 +29,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        if (body instanceof ResponseResult) {
+            if (body instanceof ResponseResult) {
             return body;
         }
         if (body instanceof String) {

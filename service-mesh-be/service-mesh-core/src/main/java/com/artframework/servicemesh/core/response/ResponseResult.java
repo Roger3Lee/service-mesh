@@ -1,11 +1,9 @@
 package com.artframework.servicemesh.core.response;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
 
-@Builder
 @Data
 public class ResponseResult<T> implements Serializable {
     private Integer code;
@@ -17,10 +15,10 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static <T> ResponseResult<T> build(Integer code, String message, T data) {
-        return (ResponseResult<T>) ResponseResult.builder()
-                .code(code)
-                .message(message)
-                .data(data)
-                .build();
+        ResponseResult<T> response = new ResponseResult<T>();
+        response.setCode(code);
+        response.setMessage(message);
+        response.setData(data);
+        return response;
     }
 }

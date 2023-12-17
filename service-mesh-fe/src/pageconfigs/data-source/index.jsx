@@ -131,7 +131,12 @@ export default {
           },
           {
             max: 50,
-            message: "编码长度不能超过30位"
+            message: "编码长度不能超过30位",
+            trigger: "blur"
+          },
+          {
+            validator: "validateCode",
+            trigger: "blur"
           }
         ]
       },
@@ -168,7 +173,8 @@ export default {
       {
         name: "config",
         label: "配置",
-        controlType: "textarea",
+        controlType: "input",
+        type: "textarea",
         rules: [
           {
             required: true,
@@ -180,7 +186,8 @@ export default {
       {
         name: "description",
         label: "描述",
-        controlType: "textarea"
+        controlType: "input",
+        type: "textarea",
       }
     ]
   },

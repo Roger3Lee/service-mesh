@@ -23,7 +23,7 @@ public class SvcMeshInvokeLogDO  {
     * 主鍵ID
     */
     @TableId(value = "id", type = IdType.AUTO)
-    private java.math.BigDecimal id;
+    private Long id;
     /**
     * 服務流程ID
     */
