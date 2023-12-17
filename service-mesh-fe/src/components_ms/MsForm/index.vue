@@ -20,8 +20,8 @@ import MsFormElement from "./MsFormElement.vue"
 import common from "./common.jsx"
 
 const defaultFrom = {
-  layoutCol: "3",
-  layoutColWidth: "3fr",
+  layoutCol: "1",
+  layoutColWidth: "1fr",
   labelWidth: "80px",
   elements: [],
   buttons: [],
@@ -34,6 +34,7 @@ const elementDefault = {
   disabled: false,
   rules: []
 }
+
 
 export default {
   name: "ms-form",
@@ -65,15 +66,30 @@ export default {
         })
       }
     })
-    return { ...fromData, ...{ model: { ...fromData.data, ...dataExt } } }
+    return {
+      ...fromData, ...{
+        model: new Proxy({ ...fromData.data, ...dataExt }, {
+          set(target, property, value, receiver) {
+            if ("changed" in target) {
+              target["changed"] = true
+            }
+            target[property] = value
+            return true
+          }
+        })
+      }
+    }
   },
   methods: {
     formData() {
-      return this.data;
+      return this.model;
+    },
+    setFormData(params: object) {
+      this.model = Object.assign(this.model, params)
     },
     validate(callback: Function) {
       this.$refs[this.$props.formId].validate((valid: Boolean) => {
-        callback.apply(this, [valid, this.data])
+        callback.apply(this, [valid, this.formData()])
       })
     },
     triggerEvent(e, eventName) {

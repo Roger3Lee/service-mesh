@@ -1,9 +1,10 @@
 <template>
   <div>
     <ms-table-page ref="tablePage" :formConfig="formConfig" :tableConfig="tableConfig"
-      :tableOperateButtons="tableOperateButtons" :service="service" />
+      :tableOperateButtons="tableOperateButtons" :service="service.page" />
     <ms-modal ref="addDialog" title="新增" :config="createFormConfig" @confirm="addItem" :validators="validators" />
-    <ms-modal ref="editDialog" title="修改" :config="createFormConfig" @confirm="editItem" :validators="validators" />
+    <ms-modal ref="editDialog" title="修改" :config="editFormConfig" @confirm="editItem" :validators="validators"
+      :service="service.findItem" />
   </div>
 </template>
 
@@ -13,7 +14,7 @@ import MsTablePage from "@/components_ms/MsTablePage/index.vue"
 import MsModal from "@/components_ms/MsModal/index.vue"
 import config from "@/pageconfigs/data-source/index.jsx"
 import validators from "@/validators/index.jsx"
-import { ElMessage } from "element-plus"
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 export default {
   name: "Dashboard",
@@ -28,10 +29,10 @@ export default {
       },
       formConfig: config.pageQueryFormConfig,
       tableOperateButtons: config.tableOperateButtons,
-      service: DS.page,
       createFormConfig: config.createFormConfig,
       editFormConfig: config.editFormConfig,
-      validators: validators
+      validators: validators,
+      service: DS
     }
   },
   methods: {
@@ -58,17 +59,19 @@ export default {
       });
     },
     deleteItem(row: any) {
-      DS.deleteItem(row.id).then(resp => {
-        if (resp.code !== 0) {
-          ElMessage.error(resp.message)
-        } else {
-          this.reloadData();
-        }
+      ElMessageBox.confirm("确定删除？").then(() => {
+        DS.deleteItem(row.id).then(resp => {
+          if (resp.code !== 0) {
+            ElMessage.error(resp.message)
+          } else {
+            this.reloadData();
+            ElMessage.success("删除成功。")
+          }
+        })
       })
     },
     editItemDialogShow(row: any) {
-      console.log("edit", row, this)
-      this.$refs.editDialog.show()
+      this.$refs.editDialog.show({ key: row.id })
     },
     reloadData() {
       this.$refs.tablePage.reloadTable();

@@ -1,4 +1,4 @@
-import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
+import { Search, Refresh, CirclePlus, Delete, Edit } from "@element-plus/icons-vue"
 const type = [
   {
     value: "API",
@@ -61,7 +61,7 @@ export default {
       {
         field: "#seq",
         label: "序号",
-        width: "50"
+        width: "60"
       },
       {
         field: "code",
@@ -79,6 +79,10 @@ export default {
         }
       },
       {
+        field: "description",
+        label: "描述"
+      },
+      {
         field: "updateBy",
         label: "更新人"
       },
@@ -88,35 +92,37 @@ export default {
       },
       {
         label: "操作",
-        width: "100px",
+        width: "150px",
         fixed: "right",
         formatter(h, row, cellValue, index) {
           return (
-            <span>
+            <div>
               <el-link
+                underline={false}
                 href="javascript:void(0)"
-                icon="el-icon-delete"
+                icon={Delete}
                 onClick={() => { this.$trigger("deleteItem", [row]) }}
                 type="danger"
+                style={{ "margin-right": "3px" }}
               >
                 刪除
               </el-link>
               <el-link
+                underline={false}
                 href="javascript:void(0)"
-                icon="el-icon-edit"
+                icon={Edit}
                 onClick={() => this.$trigger("editItemDialogShow", [row])}
                 type="primary"
               >
                 編輯
               </el-link>
-            </span>
+            </div>
           )
         }
       }
     ]
   },
   createFormConfig: {
-    layoutCol: "1",
     elements: [
       {
         name: "code",
@@ -175,6 +181,7 @@ export default {
         label: "配置",
         controlType: "input",
         type: "textarea",
+        rows: 4,
         rules: [
           {
             required: true,
@@ -187,12 +194,12 @@ export default {
         name: "description",
         label: "描述",
         controlType: "input",
+        rows: 4,
         type: "textarea",
       }
     ]
   },
   editFormConfig: {
-    layoutCol: "3",
     elements: [
       {
         name: "code",
@@ -235,7 +242,9 @@ export default {
       {
         name: "config",
         label: "配置",
-        controlType: "textarea",
+        controlType: "input",
+        type: "textarea",
+        rows: 4,
         rules: [
           {
             required: true,
@@ -247,19 +256,19 @@ export default {
       {
         name: "description",
         label: "描述",
-        controlType: "textarea"
-      }
-    ],
-    buttons: [
-      {
-        label: "提交",
-        type: "primary",
-        click: "submit"
+        controlType: "input",
+        rows: 4,
+        type: "textarea",
       },
       {
-        label: "取消",
-        type: "default",
-        click: "cancel"
+        name: "createBy",
+        label: "更新人",
+        disabled: true
+      },
+      {
+        name: "createTime",
+        label: "更新时间",
+        disabled: true
       }
     ]
   }

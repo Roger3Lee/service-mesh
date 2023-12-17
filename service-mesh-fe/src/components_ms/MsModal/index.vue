@@ -11,6 +11,7 @@
 <script>
 import formCommon from "../MsForm/common.jsx"
 import MsForm from "../MsForm/index.vue"
+const defaultServiceCallback = (resp) => { return resp?.data }
 export default {
   name: "ms-modal",
   components: {
@@ -21,7 +22,15 @@ export default {
       type: String,
       require: true
     },
-    ...formCommon.formProps
+    ...formCommon.formProps,
+    service: {
+      type: Function,
+      require: false
+    },
+    serviceCallback: {
+      type: Function,
+      require: false
+    }
   },
   inject: ["$refpage"],
   provide() {
@@ -35,8 +44,14 @@ export default {
     }
   },
   methods: {
-    show() {
+    show(params) {
       this.dialogVisible = true
+      if (this.$props.service) {
+        this.$props.service.call(this, params).then(resp => {
+          const serviceCallback = this.$props.serviceCallback || defaultServiceCallback
+          this.$refs.dialogForm.setFormData(serviceCallback.apply(this, [resp]))
+        })
+      }
     },
     close() {
       this.dialogVisible = false
