@@ -48,11 +48,7 @@ export default {
     },
     triggerEvent(e, event) {
       if (typeof event === "string" && event != "") {
-        if (this._refpage && this._refpage[event]) {
-          this._refpage[event].call(this._refpage, e)
-        } else {
-          this.$emit(event, e)
-        }
+        this.$emit(event, e)
       } else if (typeof event === 'function') {
         event.call(this._refpage, e)
       }

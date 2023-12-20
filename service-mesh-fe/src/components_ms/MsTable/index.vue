@@ -61,7 +61,7 @@ export default {
     return {
       ...defaultConfig,
       ...this.$props.config,
-      ...{ columns: common.buildColumns(this.$props.config.columns, defaultColumnConfig, this.$props.formatters) }
+      ...{ columns: common.buildColumns(this.$props.config?.columns, defaultColumnConfig, this.$props.formatters) }
     }
   },
   created() {

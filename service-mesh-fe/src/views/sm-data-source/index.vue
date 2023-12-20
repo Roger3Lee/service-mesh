@@ -1,7 +1,7 @@
 <template>
   <div>
     <ms-table-page ref="tablePage" :formConfig="formConfig" :tableConfig="tableConfig"
-      :tableOperateButtons="tableOperateButtons" :service="service.page" />
+      :tableOperateButtons="tableOperateButtons" :service="service.page" @addButtonClick="addItemDialogShow" />
     <ms-modal ref="addDialog" title="新增" :config="createFormConfig" @confirm="addItem" :validators="validators" />
     <ms-modal ref="editDialog" title="修改" :config="editFormConfig" @confirm="editItem" :validators="validators"
       :service="service.findItem" />
@@ -36,10 +36,6 @@ export default {
     }
   },
   methods: {
-    submit(data: any) {
-      console.log("submit", data)
-      alert("submit")
-    },
     addItemDialogShow() {
       this.$refs.addDialog.show();
     },

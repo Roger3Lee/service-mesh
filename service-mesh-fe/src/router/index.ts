@@ -74,13 +74,13 @@ export const constantRoutes: RouteRecordRaw[] = [
         path: "/data-source/index",
         component: () => import("@/views/sm-data-source/index.vue"),
         name: "data-source",
-        meta: { title: "数据源管理" }
+        meta: { title: "数据源管理", elIcon: "DataAnalysis" }
       },
       {
         path: "/data-source/data-service",
         component: () => import("@/views/sm-data-source/data-service/index.vue"),
         name: "data-service",
-        meta: { title: "服务管理" }
+        meta: { title: "服务管理", elIcon: "DataLine" }
       }
     ]
   },
@@ -132,7 +132,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "https://juejin.cn/post/7089377403717287972",
-        component: () => {},
+        component: () => { },
         name: "Link1",
         meta: {
           title: "中文文档"
@@ -140,7 +140,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "https://juejin.cn/column/7207659644487139387",
-        component: () => {},
+        component: () => { },
         name: "Link2",
         meta: {
           title: "新手教程"
