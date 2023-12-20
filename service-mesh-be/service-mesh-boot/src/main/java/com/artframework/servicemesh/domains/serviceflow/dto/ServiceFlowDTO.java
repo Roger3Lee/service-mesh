@@ -1,6 +1,6 @@
 package com.artframework.servicemesh.domains.serviceflow.dto;
 
-import com.artframework.domain.core.dto.BaseDTO;
+import com.artframework.domain.core.dto.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +14,6 @@ import java.util.Map;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -85,6 +84,7 @@ public class ServiceFlowDTO extends BaseDTO {
     * RELATE svc_mesh_flow_invoke_log
     */
     private java.util.List<SvcMeshFlowInvokeLogDTO> svcMeshFlowInvokeLogList;
+
 
     /**
     * 加载数据对象
@@ -286,10 +286,11 @@ public class ServiceFlowDTO extends BaseDTO {
         private java.util.Date updateTime;
     }
 
+
     @Getter
     @Setter
     @ToString
-    public static class LoadFlag{
+    public static class LoadFlag extends BaseLoadFlag{
 
         /**
         *
@@ -305,10 +306,5 @@ public class ServiceFlowDTO extends BaseDTO {
         *
         */
         private Boolean loadSvcMeshFlowInvokeLog = false;
-
-        /**
-         * 過濾條件
-         */
-        private Map<String, Object> filters = new HashMap<>();
     }
 }

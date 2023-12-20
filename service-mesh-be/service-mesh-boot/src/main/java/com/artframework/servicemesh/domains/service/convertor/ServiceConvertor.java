@@ -23,4 +23,5 @@ public interface  ServiceConvertor{
     List<ServiceDTO.SvcMeshDatasourceDTO> convert2SvcMeshDatasourceDTO(List<SvcMeshDatasourceDO>  request);
     SvcMeshDatasourceDO convert2SvcMeshDatasourceDO(ServiceDTO.SvcMeshDatasourceDTO request);
     List<SvcMeshDatasourceDO> convert2SvcMeshDatasourceDO(List<ServiceDTO.SvcMeshDatasourceDTO>  request);
+
 }

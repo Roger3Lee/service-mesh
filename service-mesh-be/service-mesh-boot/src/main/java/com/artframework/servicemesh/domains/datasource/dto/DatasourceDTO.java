@@ -1,6 +1,6 @@
 package com.artframework.servicemesh.domains.datasource.dto;
 
-import com.artframework.domain.core.dto.BaseDTO;
+import com.artframework.domain.core.dto.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +14,6 @@ import java.util.Map;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -74,20 +73,17 @@ public class DatasourceDTO extends BaseDTO {
     private java.util.Date updateTime;
 
 
+
     /**
     * 加载数据对象
     */
     private LoadFlag loadFlag;
 
 
+
     @Getter
     @Setter
     @ToString
-    public static class LoadFlag{
-
-        /**
-         * 過濾條件
-         */
-        private Map<String, Object> filters = new HashMap<>();
+    public static class LoadFlag extends BaseLoadFlag{
     }
 }

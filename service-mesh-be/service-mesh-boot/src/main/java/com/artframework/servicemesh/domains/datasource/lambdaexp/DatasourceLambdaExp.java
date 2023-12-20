@@ -16,20 +16,20 @@ import java.io.Serializable;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
 @ToString
 public class DatasourceLambdaExp{
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<DatasourceDTO, Serializable> dtoKeyLambda= DatasourceDTO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<DatasourceDTO, Serializable> dtoKeyLambda= DatasourceDTO::getId;
 
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<SvcMeshDatasourceDO, Serializable> doKeyLambda= SvcMeshDatasourceDO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<SvcMeshDatasourceDO, Serializable> doKeyLambda= SvcMeshDatasourceDO::getId;
+
 
 }

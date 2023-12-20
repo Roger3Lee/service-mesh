@@ -16,42 +16,42 @@ import java.io.Serializable;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
 @ToString
 public class ServiceLambdaExp{
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<ServiceDTO, Serializable> dtoKeyLambda= ServiceDTO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<ServiceDTO, Serializable> dtoKeyLambda= ServiceDTO::getId;
 
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<SvcMeshServiceDO, Serializable> doKeyLambda= SvcMeshServiceDO::getId;
-
-
-        /**
-        *  svc_mesh_datasource lambda
-        */
-        public static SFunction<ServiceDTO.SvcMeshDatasourceDTO, Serializable> svcMeshDatasourceKeyLambda = ServiceDTO.SvcMeshDatasourceDTO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<SvcMeshServiceDO, Serializable> doKeyLambda= SvcMeshServiceDO::getId;
 
 
-        /**
-        * RELATE svc_mesh_datasource lambda
-        */
-        public static SFunction<ServiceDTO, Serializable> svcMeshDatasourceSourceLambda = ServiceDTO::getDatasourceId;
+    /**
+    *  svc_mesh_datasource lambda
+    */
+    public static SFunction<ServiceDTO.SvcMeshDatasourceDTO, Serializable> svcMeshDatasourceKeyLambda = ServiceDTO.SvcMeshDatasourceDTO::getId;
 
 
-        /**
-        * RELATE user_address lambda
-        */
-        public static BiConsumer<ServiceDTO.SvcMeshDatasourceDTO,Long> svcMeshDatasourceTargetSetLambda =ServiceDTO.SvcMeshDatasourceDTO::setId;
+    /**
+    * RELATE svc_mesh_datasource lambda
+    */
+    public static SFunction<ServiceDTO, Serializable> svcMeshDatasourceSourceLambda = ServiceDTO::getDatasourceId;
 
-        /**
-        * RELATE svc_mesh_datasource lambda
-        */
-        public static SFunction<SvcMeshDatasourceDO,Serializable> svcMeshDatasourceTargetLambda =SvcMeshDatasourceDO::getId;
+
+    /**
+    * RELATE user_address lambda
+    */
+    public static BiConsumer<ServiceDTO.SvcMeshDatasourceDTO,Long> svcMeshDatasourceTargetSetLambda =ServiceDTO.SvcMeshDatasourceDTO::setId;
+
+    /**
+    * RELATE svc_mesh_datasource lambda
+    */
+    public static SFunction<SvcMeshDatasourceDO,Serializable> svcMeshDatasourceTargetLambda =SvcMeshDatasourceDO::getId;
+
 }

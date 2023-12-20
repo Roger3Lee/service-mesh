@@ -1,6 +1,6 @@
 package com.artframework.servicemesh.domains.service.dto;
 
-import com.artframework.domain.core.dto.BaseDTO;
+import com.artframework.domain.core.dto.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +14,6 @@ import java.util.Map;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
@@ -86,6 +85,7 @@ public class ServiceDTO extends BaseDTO {
     */
     private SvcMeshDatasourceDTO svcMeshDatasource;
 
+
     /**
     * 加载数据对象
     */
@@ -154,19 +154,15 @@ public class ServiceDTO extends BaseDTO {
         private java.util.Date updateTime;
     }
 
+
     @Getter
     @Setter
     @ToString
-    public static class LoadFlag{
+    public static class LoadFlag extends BaseLoadFlag{
 
         /**
         *
         */
         private Boolean loadSvcMeshDatasource = false;
-
-        /**
-         * 過濾條件
-         */
-        private Map<String, Object> filters = new HashMap<>();
     }
 }

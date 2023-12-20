@@ -70,4 +70,5 @@ public class ServiceRepositoryImpl extends BaseRepositoryImpl<ServiceDTO,SvcMesh
             return SvcMeshDatasourceDO.class;
         }
     }
+
 }

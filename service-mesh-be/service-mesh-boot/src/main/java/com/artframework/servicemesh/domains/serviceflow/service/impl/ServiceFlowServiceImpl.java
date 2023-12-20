@@ -51,6 +51,10 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
     @Override
     public ServiceFlowDTO find(ServiceFlowFindRequest request){
         ServiceFlowDTO response = serviceFlowRepository.query(request.getKey(), ServiceFlowLambdaExp.doKeyLambda);
+        if(ObjectUtil.isNull(response)){
+            return response;
+        }
+
         if (ObjectUtil.isNotNull(request.getLoadFlag())) {
             if(request.getLoadFlag().getLoadSvcMeshFlowConfig()){
                 Serializable key = ServiceFlowLambdaExp.svcMeshFlowConfigSourceLambda.apply(response);
@@ -59,17 +63,18 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
             if(request.getLoadFlag().getLoadSvcMeshFlowNode()){
                 Serializable key = ServiceFlowLambdaExp.svcMeshFlowNodeSourceLambda.apply(response);
                 response.setSvcMeshFlowNodeList(svcMeshFlowNodeRepository.queryList(key, ServiceFlowLambdaExp.svcMeshFlowNodeTargetLambda,
-                                LoadFiltersUtils.getEntityFilters(request.getLoadFlag().getFilters(),"SvcMeshFlowNode")));
+                                FiltersUtils.getEntityFilters(request.getLoadFlag().getFilters(), this.getEntityName(ServiceFlowDTO.SvcMeshFlowNodeDTO.class))));
             }
             if(request.getLoadFlag().getLoadSvcMeshFlowInvokeLog()){
                 Serializable key = ServiceFlowLambdaExp.svcMeshFlowInvokeLogSourceLambda.apply(response);
                 response.setSvcMeshFlowInvokeLogList(svcMeshFlowInvokeLogRepository.queryList(key, ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetLambda,
-                                LoadFiltersUtils.getEntityFilters(request.getLoadFlag().getFilters(),"SvcMeshFlowInvokeLog")));
+                                FiltersUtils.getEntityFilters(request.getLoadFlag().getFilters(), this.getEntityName(ServiceFlowDTO.SvcMeshFlowInvokeLogDTO.class))));
             }
         }
         response.setLoadFlag(request.getLoadFlag());
         return response;
     }
+
 
     /**
     * 新增
@@ -132,6 +137,8 @@ public class ServiceFlowServiceImpl extends BaseDomainServiceImpl implements Ser
             request.getSvcMeshFlowInvokeLogList().forEach(x->ServiceFlowLambdaExp.svcMeshFlowInvokeLogTargetSetLambda.accept(x,(Long)key));
             this.merge(old.getSvcMeshFlowInvokeLogList(), request.getSvcMeshFlowInvokeLogList(), ServiceFlowLambdaExp.svcMeshFlowInvokeLogKeyLambda, svcMeshFlowInvokeLogRepository);
         }
+
+
         //更新数据
         serviceFlowRepository.update(request);
         return true;

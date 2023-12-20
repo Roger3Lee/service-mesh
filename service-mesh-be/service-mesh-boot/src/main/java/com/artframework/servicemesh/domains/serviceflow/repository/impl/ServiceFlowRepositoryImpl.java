@@ -116,4 +116,5 @@ public class ServiceFlowRepositoryImpl extends BaseRepositoryImpl<ServiceFlowDTO
             return SvcMeshFlowInvokeLogDO.class;
         }
     }
+
 }

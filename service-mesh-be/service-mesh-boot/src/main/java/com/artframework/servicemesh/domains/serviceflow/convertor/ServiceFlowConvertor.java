@@ -31,4 +31,5 @@ public interface  ServiceFlowConvertor{
     List<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO> convert2SvcMeshFlowInvokeLogDTO(List<SvcMeshFlowInvokeLogDO>  request);
     SvcMeshFlowInvokeLogDO convert2SvcMeshFlowInvokeLogDO(ServiceFlowDTO.SvcMeshFlowInvokeLogDTO request);
     List<SvcMeshFlowInvokeLogDO> convert2SvcMeshFlowInvokeLogDO(List<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO>  request);
+
 }

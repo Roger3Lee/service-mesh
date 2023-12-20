@@ -16,86 +16,86 @@ import java.io.Serializable;
 *
 * @author auto
 * @version v1.0
-* @date 2023-12-17 12:20:56
 */
 @Getter
 @Setter
 @ToString
 public class ServiceFlowLambdaExp{
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<ServiceFlowDTO, Serializable> dtoKeyLambda= ServiceFlowDTO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<ServiceFlowDTO, Serializable> dtoKeyLambda= ServiceFlowDTO::getId;
 
-        /**
-        * KEY  lambda
-        */
-        public static SFunction<SvcMeshFlowDO, Serializable> doKeyLambda= SvcMeshFlowDO::getId;
-
-
-        /**
-        *  svc_mesh_flow_config lambda
-        */
-        public static SFunction<ServiceFlowDTO.SvcMeshFlowConfigDTO, Serializable> svcMeshFlowConfigKeyLambda = ServiceFlowDTO.SvcMeshFlowConfigDTO::getId;
+    /**
+    * KEY  lambda
+    */
+    public static SFunction<SvcMeshFlowDO, Serializable> doKeyLambda= SvcMeshFlowDO::getId;
 
 
-        /**
-        * RELATE svc_mesh_flow_config lambda
-        */
-        public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowConfigSourceLambda = ServiceFlowDTO::getId;
+    /**
+    *  svc_mesh_flow_config lambda
+    */
+    public static SFunction<ServiceFlowDTO.SvcMeshFlowConfigDTO, Serializable> svcMeshFlowConfigKeyLambda = ServiceFlowDTO.SvcMeshFlowConfigDTO::getId;
 
 
-        /**
-        * RELATE user_address lambda
-        */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowConfigDTO,Long> svcMeshFlowConfigTargetSetLambda =ServiceFlowDTO.SvcMeshFlowConfigDTO::setFlowId;
-
-        /**
-        * RELATE svc_mesh_flow_config lambda
-        */
-        public static SFunction<SvcMeshFlowConfigDO,Serializable> svcMeshFlowConfigTargetLambda =SvcMeshFlowConfigDO::getFlowId;
-
-        /**
-        *  svc_mesh_flow_node lambda
-        */
-        public static SFunction<ServiceFlowDTO.SvcMeshFlowNodeDTO, Serializable> svcMeshFlowNodeKeyLambda = ServiceFlowDTO.SvcMeshFlowNodeDTO::getId;
+    /**
+    * RELATE svc_mesh_flow_config lambda
+    */
+    public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowConfigSourceLambda = ServiceFlowDTO::getId;
 
 
-        /**
-        * RELATE svc_mesh_flow_node lambda
-        */
-        public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowNodeSourceLambda = ServiceFlowDTO::getId;
+    /**
+    * RELATE user_address lambda
+    */
+    public static BiConsumer<ServiceFlowDTO.SvcMeshFlowConfigDTO,Long> svcMeshFlowConfigTargetSetLambda =ServiceFlowDTO.SvcMeshFlowConfigDTO::setFlowId;
+
+    /**
+    * RELATE svc_mesh_flow_config lambda
+    */
+    public static SFunction<SvcMeshFlowConfigDO,Serializable> svcMeshFlowConfigTargetLambda =SvcMeshFlowConfigDO::getFlowId;
+
+    /**
+    *  svc_mesh_flow_node lambda
+    */
+    public static SFunction<ServiceFlowDTO.SvcMeshFlowNodeDTO, Serializable> svcMeshFlowNodeKeyLambda = ServiceFlowDTO.SvcMeshFlowNodeDTO::getId;
 
 
-        /**
-        * RELATE user_address lambda
-        */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowNodeDTO,Long> svcMeshFlowNodeTargetSetLambda =ServiceFlowDTO.SvcMeshFlowNodeDTO::setFlowId;
-
-        /**
-        * RELATE svc_mesh_flow_node lambda
-        */
-        public static SFunction<SvcMeshFlowNodeDO,Serializable> svcMeshFlowNodeTargetLambda =SvcMeshFlowNodeDO::getFlowId;
-
-        /**
-        *  svc_mesh_flow_invoke_log lambda
-        */
-        public static SFunction<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO, Serializable> svcMeshFlowInvokeLogKeyLambda = ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::getId;
+    /**
+    * RELATE svc_mesh_flow_node lambda
+    */
+    public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowNodeSourceLambda = ServiceFlowDTO::getId;
 
 
-        /**
-        * RELATE svc_mesh_flow_invoke_log lambda
-        */
-        public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowInvokeLogSourceLambda = ServiceFlowDTO::getId;
+    /**
+    * RELATE user_address lambda
+    */
+    public static BiConsumer<ServiceFlowDTO.SvcMeshFlowNodeDTO,Long> svcMeshFlowNodeTargetSetLambda =ServiceFlowDTO.SvcMeshFlowNodeDTO::setFlowId;
+
+    /**
+    * RELATE svc_mesh_flow_node lambda
+    */
+    public static SFunction<SvcMeshFlowNodeDO,Serializable> svcMeshFlowNodeTargetLambda =SvcMeshFlowNodeDO::getFlowId;
+
+    /**
+    *  svc_mesh_flow_invoke_log lambda
+    */
+    public static SFunction<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO, Serializable> svcMeshFlowInvokeLogKeyLambda = ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::getId;
 
 
-        /**
-        * RELATE user_address lambda
-        */
-        public static BiConsumer<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO,Long> svcMeshFlowInvokeLogTargetSetLambda =ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::setFlowId;
+    /**
+    * RELATE svc_mesh_flow_invoke_log lambda
+    */
+    public static SFunction<ServiceFlowDTO, Serializable> svcMeshFlowInvokeLogSourceLambda = ServiceFlowDTO::getId;
 
-        /**
-        * RELATE svc_mesh_flow_invoke_log lambda
-        */
-        public static SFunction<SvcMeshFlowInvokeLogDO,Serializable> svcMeshFlowInvokeLogTargetLambda =SvcMeshFlowInvokeLogDO::getFlowId;
+
+    /**
+    * RELATE user_address lambda
+    */
+    public static BiConsumer<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO,Long> svcMeshFlowInvokeLogTargetSetLambda =ServiceFlowDTO.SvcMeshFlowInvokeLogDTO::setFlowId;
+
+    /**
+    * RELATE svc_mesh_flow_invoke_log lambda
+    */
+    public static SFunction<SvcMeshFlowInvokeLogDO,Serializable> svcMeshFlowInvokeLogTargetLambda =SvcMeshFlowInvokeLogDO::getFlowId;
+
 }

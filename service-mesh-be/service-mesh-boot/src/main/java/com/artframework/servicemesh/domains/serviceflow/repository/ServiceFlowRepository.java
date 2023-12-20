@@ -23,4 +23,5 @@ public interface ServiceFlowRepository extends BaseRepository<ServiceFlowDTO, Sv
     }
     public interface SvcMeshFlowInvokeLogRepository extends BaseRepository<ServiceFlowDTO.SvcMeshFlowInvokeLogDTO, SvcMeshFlowInvokeLogDO> {
     }
+
 }

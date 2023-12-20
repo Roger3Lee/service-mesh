@@ -17,4 +17,5 @@ public interface DatasourceRepository extends BaseRepository<DatasourceDTO, SvcM
     */
     IPage<DatasourceDTO> page(DatasourcePageRequest request);
 
+
 }

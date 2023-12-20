@@ -45,6 +45,10 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
     @Override
     public ServiceDTO find(ServiceFindRequest request){
         ServiceDTO response = serviceRepository.query(request.getKey(), ServiceLambdaExp.doKeyLambda);
+        if(ObjectUtil.isNull(response)){
+            return response;
+        }
+
         if (ObjectUtil.isNotNull(request.getLoadFlag())) {
             if(request.getLoadFlag().getLoadSvcMeshDatasource()){
                 Serializable key = ServiceLambdaExp.svcMeshDatasourceSourceLambda.apply(response);
@@ -54,6 +58,7 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
         response.setLoadFlag(request.getLoadFlag());
         return response;
     }
+
 
     /**
     * 新增
@@ -92,6 +97,8 @@ public class ServiceServiceImpl extends BaseDomainServiceImpl implements Service
                 svcMeshDatasourceRepository.update(request.getSvcMeshDatasource());
             }
         }
+
+
         //更新数据
         serviceRepository.update(request);
         return true;

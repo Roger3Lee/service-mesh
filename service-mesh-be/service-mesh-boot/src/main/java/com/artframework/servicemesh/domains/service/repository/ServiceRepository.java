@@ -19,4 +19,5 @@ public interface ServiceRepository extends BaseRepository<ServiceDTO, SvcMeshSer
 
     public interface SvcMeshDatasourceRepository extends BaseRepository<ServiceDTO.SvcMeshDatasourceDTO, SvcMeshDatasourceDO> {
     }
+
 }

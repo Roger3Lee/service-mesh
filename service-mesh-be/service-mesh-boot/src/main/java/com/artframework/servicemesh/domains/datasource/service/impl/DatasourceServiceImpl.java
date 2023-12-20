@@ -44,6 +44,7 @@ public class DatasourceServiceImpl extends BaseDomainServiceImpl implements Data
         return datasourceRepository.query(request.getKey(), DatasourceLambdaExp.doKeyLambda);
     }
 
+
     /**
     * 新增
     * @param request 请求体
@@ -65,6 +66,8 @@ public class DatasourceServiceImpl extends BaseDomainServiceImpl implements Data
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean update(DatasourceUpdateRequest request){
+
+
         //更新数据
         datasourceRepository.update(request);
         return true;
