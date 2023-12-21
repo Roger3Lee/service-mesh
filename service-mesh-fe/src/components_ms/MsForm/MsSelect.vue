@@ -24,6 +24,22 @@ const defaultProp = {
 export default {
   name: "ms-select",
   props: common.elementProps,
+  inject: ["$refpage"],
+  async mounted() {
+    if (typeof this.sources === 'string') {
+      if (typeof this.$refpage[this.sources] === 'function') {
+        let result = this.$refpage[this.sources].apply(this.$refpage, [])
+        if (Promise.resolve(result) === result) {
+          this.sources = await result;
+        } else {
+          this.sources = result
+        }
+      }
+      if (typeof this.$refpage[this.sources] === 'object') {
+        this.sources = this.$refpage[this.sources]
+      }
+    }
+  },
   data() {
     return {
       ...defaultProp,

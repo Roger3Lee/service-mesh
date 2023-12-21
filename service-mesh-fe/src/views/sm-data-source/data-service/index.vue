@@ -10,11 +10,12 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, provide } from 'vue'
 import { ElMessage, ElMessageBox } from "element-plus"
 import MsTablePage from "@/components_ms/MsTablePage/index.vue"
 import MsModal from "@/components_ms/MsModal/index.vue"
 import { createItem, updateItem, deleteItem as DELETE, page, findItem } from "@/api/service/index"
+import { page as DSpage } from '@/api/datasource'
 import { default as pageConfigV } from "@/pageconfigs/data-source/data-service/index.jsx"
 import { default as validators } from "@/validators/index.jsx"
 
@@ -65,4 +66,16 @@ const editItemDialogShow = (row: any) => {
 const reloadData = () => {
     tablePage.value.reloadTable();
 }
+const getDatasource = () => {
+    return DSpage({ pageNum: 1, pageSize: 9999 }).then((resp: any) => {
+        let response: { label: any; value: any }[] = [];
+        if (resp.code === 0) {
+            resp.data.records.forEach((element: { name: any; id: any }) => {
+                response.push({ label: element.name, value: element.id })
+            });
+        }
+        return response;
+    })
+}
+provide("$refpage", { getDatasource, editItemDialogShow, deleteItem });
 </script>

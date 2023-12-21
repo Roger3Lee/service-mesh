@@ -1,16 +1,6 @@
 import { Search, Refresh, CirclePlus, Delete, Edit } from "@element-plus/icons-vue"
-const type = [
-    {
-        value: "API",
-        label: "接口"
-    },
-    {
-        value: "DB",
-        label: "数据库"
-    }
-]
+
 export default {
-    type: type,
     pageQueryFormConfig: {
         layoutCol: "3",
         elements: [
@@ -21,14 +11,6 @@ export default {
             {
                 name: "name",
                 label: "名称"
-            },
-            {
-                name: "type",
-                controlType: "select",
-                placeholder: "类型",
-                label: "类型",
-                multiple: true,
-                sources: type
             }
         ],
         buttons: [
@@ -72,15 +54,11 @@ export default {
                 label: "名称"
             },
             {
-                field: "type",
+                field: "datasourceId",
                 label: "类型",
                 formatter(h, row, cellValue, index) {
-                    return <span>{type.find((x) => x.value === cellValue)?.label}</span>
+                    return <span>cellValue</span>
                 }
-            },
-            {
-                field: "description",
-                label: "描述"
             },
             {
                 field: "updateBy",
@@ -163,39 +141,44 @@ export default {
                 ]
             },
             {
-                name: "type",
+                name: "datasourceId",
                 controlType: "select",
-                placeholder: "类型",
-                label: "类型",
-                sources: type,
+                placeholder: "数据源",
+                label: "数据源",
+                sources: "getDatasource",
                 rules: [
                     {
                         required: true,
-                        message: "请输入类型",
+                        message: "请选择类型",
                         trigger: "blur"
                     }
                 ]
+            },
+            {
+                name: "inputTemplate",
+                label: "输入模板",
+                controlType: "input",
+                type: "textarea",
+                rows: 4,
             },
             {
                 name: "config",
                 label: "配置",
                 controlType: "input",
-                type: "textarea",
                 rows: 4,
+                type: "textarea",
                 rules: [
                     {
                         required: true,
-                        message: "配置",
                         trigger: "blur"
                     }
                 ]
-            },
-            {
-                name: "description",
-                label: "描述",
+            }, {
+                name: "outputTemplate",
+                label: "输出模板",
                 controlType: "input",
-                rows: 4,
                 type: "textarea",
+                rows: 4,
             }
         ]
     },
@@ -205,8 +188,24 @@ export default {
                 name: "code",
                 label: "編碼",
                 placeholder: "編碼",
+                disabled: true,
                 type: "text",
-                disabled: true
+                rules: [
+                    {
+                        required: true,
+                        message: "请输入编码",
+                        trigger: "blur"
+                    },
+                    {
+                        max: 50,
+                        message: "编码长度不能超过30位",
+                        trigger: "blur"
+                    },
+                    {
+                        validator: "validateCode",
+                        trigger: "blur"
+                    }
+                ]
             },
             {
                 name: "name",
@@ -225,48 +224,50 @@ export default {
                 ]
             },
             {
-                name: "type",
+                name: "datasourceId",
                 controlType: "select",
-                placeholder: "类型",
-                label: "类型",
-                sources: type,
-                disabled: true,
+                placeholder: "数据源",
+                label: "数据源",
+                sources: "getDatasource",
                 rules: [
                     {
                         required: true,
-                        message: "请输入类型",
+                        message: "请选择类型",
                         trigger: "blur"
                     }
                 ]
+            },
+            {
+                name: "inputTemplate",
+                label: "输入模板",
+                controlType: "input",
+                type: "textarea",
+                rows: 4,
             },
             {
                 name: "config",
                 label: "配置",
-                controlType: "input",
-                type: "textarea",
                 rows: 4,
+                type: "textarea",
                 rules: [
                     {
                         required: true,
-                        message: "配置",
                         trigger: "blur"
                     }
                 ]
-            },
-            {
-                name: "description",
-                label: "描述",
-                controlType: "input",
-                rows: 4,
+            }, {
+                name: "outputTemplate",
+                label: "输出模板",
                 type: "textarea",
+                rows: 4,
             },
             {
-                name: "createBy",
+                name: "updateBy",
                 label: "更新人",
                 disabled: true
             },
             {
-                name: "createTime",
+                name: "updateTime",
                 label: "更新时间",
                 disabled: true
             }

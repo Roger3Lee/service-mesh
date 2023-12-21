@@ -77,7 +77,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: { title: "数据源管理", elIcon: "DataAnalysis" }
       },
       {
-        path: "/data-source/data-service",
+        path: "/data-source/service",
         component: () => import("@/views/sm-data-source/data-service/index.vue"),
         name: "data-service",
         meta: { title: "服务管理", elIcon: "DataLine" }
