@@ -15,7 +15,7 @@ public class ServiceFlowController {
 
     /**
     * 分页查询
-    * @param request 请求�?
+    * @param request 请求�?
     * @return IPage<ServiceFlowDomain>
     */
     @PostMapping("page")
@@ -25,7 +25,7 @@ public class ServiceFlowController {
 
     /**
     * 查找
-    * @param request 请求�?
+    * @param request 请求�?
     * @return ServiceFlowDomain
     */
     @PostMapping("/query")
@@ -35,7 +35,7 @@ public class ServiceFlowController {
 
     /**
     * 新增
-    * @param request 请求�?
+    * @param request 请求�?
     * @return Long
     */
     @PutMapping()
@@ -45,7 +45,7 @@ public class ServiceFlowController {
 
     /**
     * 修改
-    * @param request 请求�?
+    * @param request 请求�?
     * @return 成功OR失败
     */
     @PostMapping()

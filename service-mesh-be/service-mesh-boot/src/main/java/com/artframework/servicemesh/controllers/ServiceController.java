@@ -1,6 +1,5 @@
 package com.artframework.servicemesh.controllers;
 
-import com.artframework.servicemesh.domains.datasource.domain.DatasourceDomain;
 import com.artframework.servicemesh.domains.service.domain.*;
 import com.artframework.servicemesh.domains.service.service.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -16,7 +15,7 @@ public class ServiceController {
 
     /**
     * 分页查询
-    * @param request 请求�?
+    * @param request 请求�?
     * @return IPage<ServiceDomain>
     */
     @PostMapping("page")
@@ -26,7 +25,7 @@ public class ServiceController {
 
     /**
     * 查找
-    * @param request 请求�?
+    * @param request 请求�?
     * @return ServiceDomain
     */
     @PostMapping("/query")
@@ -36,7 +35,7 @@ public class ServiceController {
 
     /**
     * 新增
-    * @param request 请求�?
+    * @param request 请求�?
     * @return Long
     */
     @PutMapping()
@@ -46,7 +45,7 @@ public class ServiceController {
 
     /**
     * 修改
-    * @param request 请求�?
+    * @param request 请求�?
     * @return 成功OR失败
     */
     @PostMapping()

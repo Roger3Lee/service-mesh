@@ -15,7 +15,7 @@ public class DatasourceController {
 
     /**
     * 分页查询
-    * @param request 请求�?
+    * @param request 请求�?
     * @return IPage<DatasourceDomain>
     */
     @PostMapping("page")
@@ -25,7 +25,7 @@ public class DatasourceController {
 
     /**
     * 查找
-    * @param request 请求�?
+    * @param request 请求�?
     * @return DatasourceDomain
     */
     @PostMapping("/query")
@@ -35,7 +35,7 @@ public class DatasourceController {
 
     /**
     * 新增
-    * @param request 请求�?
+    * @param request 请求�?
     * @return Long
     */
     @PutMapping()
@@ -45,7 +45,7 @@ public class DatasourceController {
 
     /**
     * 修改
-    * @param request 请求�?
+    * @param request 请求�?
     * @return 成功OR失败
     */
     @PostMapping()
