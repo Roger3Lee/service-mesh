@@ -47,7 +47,10 @@ public class DatasourceRepositoryImpl extends BaseRepositoryImpl<DatasourceDomai
     @Override
     public IPage<DatasourceDomain> page(DatasourcePageDomain request){
         IPage<SvcMeshDatasourceDO> page=new Page<>(request.getPageNum(), request.getPageSize());
-        LambdaQueryWrapper<SvcMeshDatasourceDO> wrapper =new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<SvcMeshDatasourceDO> wrapper =new LambdaQueryWrapper<SvcMeshDatasourceDO>();
+        wrapper.like(StrUtil.isNotBlank(request.getCode()), SvcMeshDatasourceDO::getCode, request.getCode());
+        wrapper.like(StrUtil.isNotBlank(request.getName()), SvcMeshDatasourceDO::getName, request.getName());
+        wrapper.in(CollectionUtil.isNotEmpty(request.getType()), SvcMeshDatasourceDO::getType, request.getType());
         return this.baseMapper.selectPage(page,wrapper).convert(DatasourceConvertor.INSTANCE::convert2DTO);
     }
 }
