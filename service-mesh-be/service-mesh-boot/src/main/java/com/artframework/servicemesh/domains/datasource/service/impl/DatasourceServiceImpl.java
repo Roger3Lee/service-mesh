@@ -1,23 +1,31 @@
 package com.artframework.servicemesh.domains.datasource.service.impl;
 
 import com.artframework.servicemesh.domains.datasource.service.*;
-import com.artframework.servicemesh.domains.datasource.dto.request.*;
-import com.artframework.servicemesh.domains.datasource.dto.*;
+import com.artframework.servicemesh.domains.datasource.domain.*;
 import com.artframework.servicemesh.domains.datasource.repository.*;
 import com.artframework.domain.core.service.impl.*;
 import com.artframework.domain.core.uitls.*;
 
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ObjectUtil;
+import com.artframework.domain.core.domain.*;
+import com.artframework.domain.core.repository.BaseRepository;
+import cn.hutool.core.collection.*;
+import cn.hutool.core.util.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.artframework.servicemesh.domains.datasource.lambdaexp.*;
+
+import javax.annotation.PostConstruct;
+
 
 @Service
 public class DatasourceServiceImpl extends BaseDomainServiceImpl implements DatasourceService {
@@ -26,50 +34,66 @@ public class DatasourceServiceImpl extends BaseDomainServiceImpl implements Data
 
     /**
     * 分页查询
-    * @param request 请求体
+    * @param request 请求�?
     * @return
     */
     @Override
-    public IPage<DatasourceDTO> page(DatasourcePageRequest request){
+    public IPage<DatasourceDomain> page(DatasourcePageDomain request){
         return datasourceRepository.page(request);
+    }
+
+   /**
+    * 查找
+    * @param request 请求�?
+    * @return
+    */
+    @Override
+    public DatasourceDomain find(DatasourceFindDomain request){
+        return find(request, null);
     }
 
     /**
     * 查找
-    * @param request 请求体
+    * @param request 请求�?
+    * @param response 原始數據，避免重新查詢主�?
     * @return
     */
     @Override
-    public DatasourceDTO find(DatasourceFindRequest request){
+    public DatasourceDomain find(DatasourceFindDomain request, DatasourceDomain response){
         return datasourceRepository.query(request.getKey(), DatasourceLambdaExp.doKeyLambda);
     }
 
 
     /**
+     * 查找
+     * @param request 请求�?
+     * @param keyLambda 請求key參數對應的字段的lambda表達�?
+     * @return
+     */
+    @Override
+    public DatasourceDomain findByKey(DatasourceFindDomain request, SFunction<DatasourceDomain, Serializable> keyLambda){
+        return find(request, datasourceRepository.queryByKey(request.getKey(), keyLambda));
+    }
+
+    /**
     * 新增
-    * @param request 请求体
+    * @param request 请求�?
     * @return
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long insert(DatasourceCreateRequest request){
+    public Long insert(DatasourceDomain request){
         //插入数据
-        DatasourceDTO dto = datasourceRepository.insert(request);
-        return (Long) DatasourceLambdaExp.dtoKeyLambda.apply(dto);
+        DatasourceDomain domain = datasourceRepository.insert(request);
+        return (Long) DatasourceLambdaExp.dtoKeyLambda.apply(domain);
     }
 
-    /**
-    * 修改
-    * @param request 请求体
-    * @return 成功OR失败
-    */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean update(DatasourceUpdateRequest request){
-
-
-        //更新数据
-        datasourceRepository.update(request);
+    public Boolean update(DatasourceDomain request){
+        if(request.getChanged()){
+            datasourceRepository.update(request);
+        }
         return true;
     }
 

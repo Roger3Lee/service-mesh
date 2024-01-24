@@ -1,6 +1,6 @@
 package com.artframework.servicemesh.domains.service.convertor;
 
-import com.artframework.servicemesh.domains.service.dto.*;
+import com.artframework.servicemesh.domains.service.domain.*;
 import com.artframework.servicemesh.entities.*;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.BeforeMapping;
@@ -11,10 +11,10 @@ import org.mapstruct.Named;
 public class ServiceConvertorDecorator {
 
     @BeforeMapping
-    public void before(ServiceDTO dtoRequest) {
+    public void before(ServiceDomain dtoRequest) {
     }
 
     @AfterMapping
-    public void after(ServiceDTO dtoRequest, @MappingTarget SvcMeshServiceDO doRequest) {
+    public void after(ServiceDomain dtoRequest, @MappingTarget SvcMeshServiceDO doRequest) {
     }
 }

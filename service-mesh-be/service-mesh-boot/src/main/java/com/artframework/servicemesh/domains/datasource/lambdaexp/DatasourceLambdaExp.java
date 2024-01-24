@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
-import com.artframework.servicemesh.domains.datasource.dto.*;
+import com.artframework.servicemesh.domains.datasource.domain.*;
 import com.artframework.servicemesh.entities.*;
 
 import java.util.function.*;
@@ -24,7 +24,7 @@ public class DatasourceLambdaExp{
     /**
     * KEY  lambda
     */
-    public static SFunction<DatasourceDTO, Serializable> dtoKeyLambda= DatasourceDTO::getId;
+    public static SFunction<DatasourceDomain, Serializable> dtoKeyLambda= DatasourceDomain::getId;
 
     /**
     * KEY  lambda

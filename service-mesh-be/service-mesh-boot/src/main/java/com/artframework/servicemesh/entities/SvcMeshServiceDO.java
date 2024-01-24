@@ -14,82 +14,83 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@TableName("svc_mesh_service")
+@TableName(value="svc_mesh_service", autoResultMap = true)
+@KeySequence("seq_svc_mesh_service_id")
 public class SvcMeshServiceDO  {
 
 
     /**
-    * ä¸»éµID
+    * Ö÷æIID
     */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     private Long id;
     /**
-    * æ•¸æ“šæºé…ç½®
+    * ”µ“şÔ´ÅäÖÃ
     */
     @TableField("datasource_id")
     private Long datasourceId;
     /**
-    * ç·¨ç¢¼
+    * ¾´a
     */
     @TableField("code")
     private String code;
     /**
-    * åç¨±
+    * Ãû·Q
     */
     @TableField("name")
     private String name;
     /**
-    * è«‹æ±‚æ¨¡æ¿
+    * ÕˆÇóÄ£°å
     */
     @TableField("input_template")
     private String inputTemplate;
     /**
-    * é…ç½®
+    * ÅäÖÃ
     */
     @TableField("config")
     private String config;
     /**
-    * è¼¸å‡ºæ¨¡æ¿
+    * İ”³öÄ£°å
     */
     @TableField("output_template")
     private String outputTemplate;
     /**
-    * ç§Ÿæˆ·å·
+    * ×â»§ºÅ
     */
     @TableField("tenant_id")
     private String tenantId;
     /**
-    * ä¹è§‚é”
+    * ÀÖ¹ÛËø
     */
     @TableField("version")
     private String version;
     /**
-    * å‰µå»ºäºº
+    * „“½¨ÈË
     */
     @TableField("create_by")
     private String createBy;
     /**
-    * å‰µå»ºäººå§“å
+    * „“½¨ÈËĞÕÃû
     */
     @TableField("create_by_name")
     private String createByName;
     /**
-    * åˆ›å»ºæ—¶é—´
+    * ´´½¨Ê±¼ä
     */
     @TableField("create_time")
     private java.util.Date createTime;
     /**
-    * æ›´æ–°äºº
+    * ¸üĞÂÈË
     */
     @TableField("update_by")
     private String updateBy;
     /**
-    * æ›´æ–°äººå§“å
+    * ¸üĞÂÈËĞÕÃû
     */
     @TableField("update_by_name")
     private String updateByName;
     /**
-    * æ›´æ–°æ—¶é—´
+    * ¸üĞÂÊ±¼ä
     */
     @TableField("update_time")
     private java.util.Date updateTime;

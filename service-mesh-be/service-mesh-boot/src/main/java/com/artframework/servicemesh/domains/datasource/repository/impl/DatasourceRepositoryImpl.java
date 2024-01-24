@@ -2,8 +2,7 @@ package com.artframework.servicemesh.domains.datasource.repository.impl;
 
 import com.artframework.servicemesh.domains.datasource.convertor.*;
 import com.artframework.servicemesh.domains.datasource.lambdaexp.*;
-import com.artframework.servicemesh.domains.datasource.dto.*;
-import com.artframework.servicemesh.domains.datasource.dto.request.*;
+import com.artframework.servicemesh.domains.datasource.domain.*;
 import com.artframework.servicemesh.domains.datasource.repository.*;
 import com.artframework.servicemesh.entities.*;
 import com.artframework.domain.core.repository.impl.*;
@@ -17,21 +16,26 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import java.io.Serializable;
 import java.util.List;
 
-@Repository
-public class DatasourceRepositoryImpl extends BaseRepositoryImpl<DatasourceDTO,SvcMeshDatasourceDO>  implements DatasourceRepository {
+@Repository(value="datasource-DatasourceRepositoryImpl")
+public class DatasourceRepositoryImpl extends BaseRepositoryImpl<DatasourceDomain,SvcMeshDatasourceDO>  implements DatasourceRepository {
 
     @Override
-    public List<SvcMeshDatasourceDO> convert2DO(List<DatasourceDTO> list) {
+    public List<SvcMeshDatasourceDO> convert2DO(List<DatasourceDomain> list) {
         return DatasourceConvertor.INSTANCE.convert2DO(list);
     }
 
     @Override
-    public List<DatasourceDTO> convert2DTO(List<SvcMeshDatasourceDO> list) {
+    public List<DatasourceDomain> convert2DTO(List<SvcMeshDatasourceDO> list) {
         return DatasourceConvertor.INSTANCE.convert2DTO(list);
     }
 
     @Override
-    public SFunction<DatasourceDTO, Serializable> keyLambda() {
+    public void convert2DTO(SvcMeshDatasourceDO item ,DatasourceDomain targetItem){
+        DatasourceConvertor.INSTANCE.convert2DTO(item,targetItem);
+    }
+
+    @Override
+    public SFunction<DatasourceDomain, Serializable> keyLambda() {
         return DatasourceLambdaExp.dtoKeyLambda;
     }
 
@@ -41,11 +45,9 @@ public class DatasourceRepositoryImpl extends BaseRepositoryImpl<DatasourceDTO,S
     }
 
     @Override
-    public IPage<DatasourceDTO> page(DatasourcePageRequest request){
+    public IPage<DatasourceDomain> page(DatasourcePageDomain request){
         IPage<SvcMeshDatasourceDO> page=new Page<>(request.getPageNum(), request.getPageSize());
-        LambdaQueryWrapper<SvcMeshDatasourceDO> wrapper =new LambdaQueryWrapper<SvcMeshDatasourceDO>();
+        LambdaQueryWrapper<SvcMeshDatasourceDO> wrapper =new LambdaQueryWrapper<>();
         return this.baseMapper.selectPage(page,wrapper).convert(DatasourceConvertor.INSTANCE::convert2DTO);
     }
-
-
 }

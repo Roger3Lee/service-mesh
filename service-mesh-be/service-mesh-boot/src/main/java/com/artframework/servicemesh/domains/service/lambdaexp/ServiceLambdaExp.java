@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
-import com.artframework.servicemesh.domains.service.dto.*;
+import com.artframework.servicemesh.domains.service.domain.*;
 import com.artframework.servicemesh.entities.*;
 
 import java.util.function.*;
@@ -24,7 +24,7 @@ public class ServiceLambdaExp{
     /**
     * KEY  lambda
     */
-    public static SFunction<ServiceDTO, Serializable> dtoKeyLambda= ServiceDTO::getId;
+    public static SFunction<ServiceDomain, Serializable> dtoKeyLambda= ServiceDomain::getId;
 
     /**
     * KEY  lambda
@@ -35,23 +35,29 @@ public class ServiceLambdaExp{
     /**
     *  svc_mesh_datasource lambda
     */
-    public static SFunction<ServiceDTO.SvcMeshDatasourceDTO, Serializable> svcMeshDatasourceKeyLambda = ServiceDTO.SvcMeshDatasourceDTO::getId;
+    public static SFunction<ServiceDomain.SvcMeshDatasourceDomain, Serializable> svcMeshDatasourceDomainKeyLambda = ServiceDomain.SvcMeshDatasourceDomain::getId;
 
 
     /**
     * RELATE svc_mesh_datasource lambda
     */
-    public static SFunction<ServiceDTO, Serializable> svcMeshDatasourceSourceLambda = ServiceDTO::getDatasourceId;
+    public static SFunction<ServiceDomain, Serializable> svcMeshDatasourceDomainEntitySourceLambda = ServiceDomain::getDatasourceId;
 
-
-    /**
-    * RELATE user_address lambda
-    */
-    public static BiConsumer<ServiceDTO.SvcMeshDatasourceDTO,Long> svcMeshDatasourceTargetSetLambda =ServiceDTO.SvcMeshDatasourceDTO::setId;
 
     /**
     * RELATE svc_mesh_datasource lambda
     */
-    public static SFunction<SvcMeshDatasourceDO,Serializable> svcMeshDatasourceTargetLambda =SvcMeshDatasourceDO::getId;
+    public static BiConsumer<ServiceDomain.SvcMeshDatasourceDomain,Long> svcMeshDatasourceDomainTargetSetLambda =ServiceDomain.SvcMeshDatasourceDomain::setId;
+
+  /**
+    * RELATE svc_mesh_datasource lambda
+    */
+    public static SFunction<ServiceDomain.SvcMeshDatasourceDomain,Serializable> svcMeshDatasourceDomainTargetLambda =ServiceDomain.SvcMeshDatasourceDomain::getId;
+
+
+    /**
+    * RELATE svc_mesh_datasource lambda
+    */
+    public static SFunction<SvcMeshDatasourceDO,Serializable> svcMeshDatasourceDOTargetLambda =SvcMeshDatasourceDO::getId;
 
 }

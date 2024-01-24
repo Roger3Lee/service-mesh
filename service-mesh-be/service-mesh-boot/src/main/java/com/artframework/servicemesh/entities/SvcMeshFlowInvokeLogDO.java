@@ -14,87 +14,88 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@TableName("svc_mesh_flow_invoke_log")
+@TableName(value="svc_mesh_flow_invoke_log", autoResultMap = true)
+@KeySequence("seq_svc_mesh_flow_invoke_log_id")
 public class SvcMeshFlowInvokeLogDO  {
 
 
     /**
-    * ä¸»éµID
+    * Ö÷æIID
     */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     private Long id;
     /**
-    * æœå‹™æµç¨‹ID
+    * ·ş„ÕÁ÷³ÌID
     */
     @TableField("flow_id")
     private Long flowId;
     /**
-    * èª¿ç”¨æ–¹IP
+    * Õ{ÓÃ·½IP
     */
     @TableField("source_ip")
     private String sourceIp;
     /**
-    * æœå‹™æ–¹IP
+    * ·ş„Õ·½IP
     */
     @TableField("target_ip")
     private String targetIp;
     /**
-    * è«‹æ±‚åƒæ•¸
+    * ÕˆÇó…¢”µ
     */
     @TableField("request")
     private String request;
     /**
-    * éŸ¿æ‡‰
+    * í‘‘ª
     */
     @TableField("response")
     private String response;
     /**
-    * èª¿ç”¨æ—¥èªŒ
+    * Õ{ÓÃÈÕÕI
     */
     @TableField("log")
     private String log;
     /**
-    * ç‹€æ…‹ Yç‚ºæˆåŠŸï¼Œ Nç‚ºå¤±æ•—
+    *  î‘B Yé³É¹¦£¬ NéÊ§”¡
     */
     @TableField("status")
     private String status;
     /**
-    * ç§Ÿæˆ·å·
+    * ×â»§ºÅ
     */
     @TableField("tenant_id")
     private String tenantId;
     /**
-    * ä¹è§‚é”
+    * ÀÖ¹ÛËø
     */
     @TableField("version")
     private String version;
     /**
-    * å‰µå»ºäºº
+    * „“½¨ÈË
     */
     @TableField("create_by")
     private String createBy;
     /**
-    * å‰µå»ºäººå§“å
+    * „“½¨ÈËĞÕÃû
     */
     @TableField("create_by_name")
     private String createByName;
     /**
-    * åˆ›å»ºæ—¶é—´
+    * ´´½¨Ê±¼ä
     */
     @TableField("create_time")
     private java.util.Date createTime;
     /**
-    * æ›´æ–°äºº
+    * ¸üĞÂÈË
     */
     @TableField("update_by")
     private String updateBy;
     /**
-    * æ›´æ–°äººå§“å
+    * ¸üĞÂÈËĞÕÃû
     */
     @TableField("update_by_name")
     private String updateByName;
     /**
-    * æ›´æ–°æ—¶é—´
+    * ¸üĞÂÊ±¼ä
     */
     @TableField("update_time")
     private java.util.Date updateTime;

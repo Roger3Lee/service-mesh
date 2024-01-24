@@ -14,72 +14,73 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@TableName("svc_mesh_flow")
+@TableName(value="svc_mesh_flow", autoResultMap = true)
+@KeySequence("seq_svc_mesh_flow_id")
 public class SvcMeshFlowDO  {
 
 
     /**
-    * ä¸»éµID
+    * Ö÷æIID
     */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     private Long id;
     /**
-    * å”¯ä¸€æ¨™è­˜
+    * Î¨Ò»˜Ë×R
     */
     @TableField("uuid")
     private String uuid;
     /**
-    * ç·¨ç¢¼
+    * ¾´a
     */
     @TableField("code")
     private String code;
     /**
-    * åç¨±
+    * Ãû·Q
     */
     @TableField("name")
     private String name;
     /**
-    * æè¿°
+    * ÃèÊö
     */
     @TableField("description")
     private String description;
     /**
-    * ç§Ÿæˆ·å·
+    * ×â»§ºÅ
     */
     @TableField("tenant_id")
     private String tenantId;
     /**
-    * ä¹è§‚é”
+    * ÀÖ¹ÛËø
     */
     @TableField("version")
     private String version;
     /**
-    * å‰µå»ºäºº
+    * „“½¨ÈË
     */
     @TableField("create_by")
     private String createBy;
     /**
-    * å‰µå»ºäººå§“å
+    * „“½¨ÈËĞÕÃû
     */
     @TableField("create_by_name")
     private String createByName;
     /**
-    * åˆ›å»ºæ—¶é—´
+    * ´´½¨Ê±¼ä
     */
     @TableField("create_time")
     private java.util.Date createTime;
     /**
-    * æ›´æ–°äºº
+    * ¸üĞÂÈË
     */
     @TableField("update_by")
     private String updateBy;
     /**
-    * æ›´æ–°äººå§“å
+    * ¸üĞÂÈËĞÕÃû
     */
     @TableField("update_by_name")
     private String updateByName;
     /**
-    * æ›´æ–°æ—¶é—´
+    * ¸üĞÂÊ±¼ä
     */
     @TableField("update_time")
     private java.util.Date updateTime;

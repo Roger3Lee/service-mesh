@@ -2,8 +2,7 @@ package com.artframework.servicemesh.domains.service.repository.impl;
 
 import com.artframework.servicemesh.domains.service.convertor.*;
 import com.artframework.servicemesh.domains.service.lambdaexp.*;
-import com.artframework.servicemesh.domains.service.dto.*;
-import com.artframework.servicemesh.domains.service.dto.request.*;
+import com.artframework.servicemesh.domains.service.domain.*;
 import com.artframework.servicemesh.domains.service.repository.*;
 import com.artframework.servicemesh.entities.*;
 import com.artframework.domain.core.repository.impl.*;
@@ -17,21 +16,26 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import java.io.Serializable;
 import java.util.List;
 
-@Repository
-public class ServiceRepositoryImpl extends BaseRepositoryImpl<ServiceDTO,SvcMeshServiceDO>  implements ServiceRepository {
+@Repository(value="service-ServiceRepositoryImpl")
+public class ServiceRepositoryImpl extends BaseRepositoryImpl<ServiceDomain,SvcMeshServiceDO>  implements ServiceRepository {
 
     @Override
-    public List<SvcMeshServiceDO> convert2DO(List<ServiceDTO> list) {
+    public List<SvcMeshServiceDO> convert2DO(List<ServiceDomain> list) {
         return ServiceConvertor.INSTANCE.convert2DO(list);
     }
 
     @Override
-    public List<ServiceDTO> convert2DTO(List<SvcMeshServiceDO> list) {
+    public List<ServiceDomain> convert2DTO(List<SvcMeshServiceDO> list) {
         return ServiceConvertor.INSTANCE.convert2DTO(list);
     }
 
     @Override
-    public SFunction<ServiceDTO, Serializable> keyLambda() {
+    public void convert2DTO(SvcMeshServiceDO item ,ServiceDomain targetItem){
+        ServiceConvertor.INSTANCE.convert2DTO(item,targetItem);
+    }
+
+    @Override
+    public SFunction<ServiceDomain, Serializable> keyLambda() {
         return ServiceLambdaExp.dtoKeyLambda;
     }
 
@@ -41,34 +45,9 @@ public class ServiceRepositoryImpl extends BaseRepositoryImpl<ServiceDTO,SvcMesh
     }
 
     @Override
-    public IPage<ServiceDTO> page(ServicePageRequest request){
+    public IPage<ServiceDomain> page(ServicePageDomain request){
         IPage<SvcMeshServiceDO> page=new Page<>(request.getPageNum(), request.getPageSize());
-        LambdaQueryWrapper<SvcMeshServiceDO> wrapper =new LambdaQueryWrapper<SvcMeshServiceDO>();
+        LambdaQueryWrapper<SvcMeshServiceDO> wrapper =new LambdaQueryWrapper<>();
         return this.baseMapper.selectPage(page,wrapper).convert(ServiceConvertor.INSTANCE::convert2DTO);
     }
-
-    @Repository
-    public static class SvcMeshDatasourceRepositoryImpl extends BaseRepositoryImpl<ServiceDTO.SvcMeshDatasourceDTO,SvcMeshDatasourceDO>  implements SvcMeshDatasourceRepository {
-
-        @Override
-        public List<SvcMeshDatasourceDO> convert2DO(List<ServiceDTO.SvcMeshDatasourceDTO> list) {
-            return ServiceConvertor.INSTANCE.convert2SvcMeshDatasourceDO(list);
-        }
-
-        @Override
-        public List<ServiceDTO.SvcMeshDatasourceDTO> convert2DTO(List<SvcMeshDatasourceDO> list) {
-            return ServiceConvertor.INSTANCE.convert2SvcMeshDatasourceDTO(list);
-        }
-
-        @Override
-        public SFunction<ServiceDTO.SvcMeshDatasourceDTO, Serializable> keyLambda() {
-            return ServiceLambdaExp.svcMeshDatasourceKeyLambda;
-        }
-
-        @Override
-        public Class<SvcMeshDatasourceDO> getDOClass() {
-            return SvcMeshDatasourceDO.class;
-        }
-    }
-
 }

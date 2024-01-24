@@ -14,77 +14,78 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@TableName("svc_mesh_flow_node")
+@TableName(value="svc_mesh_flow_node", autoResultMap = true)
+@KeySequence("seq_svc_mesh_flow_node_id")
 public class SvcMeshFlowNodeDO  {
 
 
     /**
-    * ä¸»éµ
+    * Ö÷æI
     */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     private Long id;
     /**
-    * æµç¨‹ID
+    * Á÷³ÌID
     */
     @TableField("flow_id")
     private Long flowId;
     /**
-    * ç¯€é»ID
+    * ¹ücID
     */
     @TableField("node_id")
     private String nodeId;
     /**
-    * ç¯€é»ç·¨ç¢¼
+    * ¹üc¾´a
     */
     @TableField("code")
     private String code;
     /**
-    * ç¯€é»é¡å‹ï¼ŒåŒ…æ‹¬æ•¸æ“šç¯€é»ï¼Œè½‰æ›ç¯€é»ï¼Œåˆ¤æ–·ç¯€é»ç­‰
+    * ¹ücîĞÍ£¬°üÀ¨”µ“ş¹üc£¬ŞD“Q¹üc£¬ÅĞ”à¹ücµÈ
     */
     @TableField("node_type")
     private String nodeType;
     /**
-    * ç¯€é»é…ç½®json
+    * ¹ücÅäÖÃjson
     */
     @TableField("config")
     private String config;
     /**
-    * ç§Ÿæˆ·å·
+    * ×â»§ºÅ
     */
     @TableField("tenant_id")
     private String tenantId;
     /**
-    * ä¹è§‚é”
+    * ÀÖ¹ÛËø
     */
     @TableField("version")
     private String version;
     /**
-    * å‰µå»ºäºº
+    * „“½¨ÈË
     */
     @TableField("create_by")
     private String createBy;
     /**
-    * å‰µå»ºäººå§“å
+    * „“½¨ÈËĞÕÃû
     */
     @TableField("create_by_name")
     private String createByName;
     /**
-    * åˆ›å»ºæ—¶é—´
+    * ´´½¨Ê±¼ä
     */
     @TableField("create_time")
     private java.util.Date createTime;
     /**
-    * æ›´æ–°äºº
+    * ¸üĞÂÈË
     */
     @TableField("update_by")
     private String updateBy;
     /**
-    * æ›´æ–°äººå§“å
+    * ¸üĞÂÈËĞÕÃû
     */
     @TableField("update_by_name")
     private String updateByName;
     /**
-    * æ›´æ–°æ—¶é—´
+    * ¸üĞÂÊ±¼ä
     */
     @TableField("update_time")
     private java.util.Date updateTime;

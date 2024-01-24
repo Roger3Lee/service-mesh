@@ -1,7 +1,7 @@
 package com.artframework.servicemesh.controllers;
 
-import com.artframework.servicemesh.domains.service.dto.*;
-import com.artframework.servicemesh.domains.service.dto.request.*;
+import com.artframework.servicemesh.domains.datasource.domain.DatasourceDomain;
+import com.artframework.servicemesh.domains.service.domain.*;
 import com.artframework.servicemesh.domains.service.service.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,41 +16,41 @@ public class ServiceController {
 
     /**
     * 分页查询
-    * @param request 请求体
-    * @return IPage<ServiceDTO>
+    * @param request 请求�?
+    * @return IPage<ServiceDomain>
     */
     @PostMapping("page")
-    public IPage<ServiceDTO> page(@RequestBody ServicePageRequest request){
+    public IPage<ServiceDomain> page(@RequestBody ServicePageDomain request){
         return serviceService.page(request);
     }
 
     /**
     * 查找
-    * @param request 请求体
-    * @return ServiceDTO
+    * @param request 请求�?
+    * @return ServiceDomain
     */
     @PostMapping("/query")
-    public ServiceDTO find(@RequestBody ServiceFindRequest request){
+    public ServiceDomain find(@RequestBody ServiceFindDomain request){
         return serviceService.find(request);
     }
 
     /**
     * 新增
-    * @param request 请求体
+    * @param request 请求�?
     * @return Long
     */
     @PutMapping()
-    public Long insert(@RequestBody ServiceCreateRequest request){
+    public Long insert(@RequestBody ServiceDomain request){
         return serviceService.insert(request);
     }
 
     /**
     * 修改
-    * @param request 请求体
+    * @param request 请求�?
     * @return 成功OR失败
     */
     @PostMapping()
-    public Boolean update(@RequestBody ServiceUpdateRequest request){
+    public Boolean update(@RequestBody ServiceDomain request){
         return serviceService.update(request);
     }
 

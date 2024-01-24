@@ -1,7 +1,7 @@
 
 package com.artframework.servicemesh.domains.datasource.convertor;
 
-import com.artframework.servicemesh.domains.datasource.dto.*;
+import com.artframework.servicemesh.domains.datasource.domain.*;
 import com.artframework.servicemesh.entities.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -12,12 +12,14 @@ import java.util.List;
 public interface  DatasourceConvertor{
     DatasourceConvertor INSTANCE= Mappers.getMapper(DatasourceConvertor.class);
 
-    DatasourceDTO convert2DTO(SvcMeshDatasourceDO request);
-    List<DatasourceDTO> convert2DTO(List<SvcMeshDatasourceDO> request);
+    DatasourceDomain convert2DTO(SvcMeshDatasourceDO request);
+    void convert2DTO(SvcMeshDatasourceDO request, @MappingTarget DatasourceDomain target);
+    List<DatasourceDomain> convert2DTO(List<SvcMeshDatasourceDO> request);
+
 
     @BeanMapping(qualifiedByName = { "DatasourceConvertorDecorator"})
-    SvcMeshDatasourceDO convert2DO(DatasourceDTO request);
-    List<SvcMeshDatasourceDO> convert2DO(List<DatasourceDTO> request);
+    SvcMeshDatasourceDO convert2DO(DatasourceDomain request);
+    List<SvcMeshDatasourceDO> convert2DO(List<DatasourceDomain> request);
 
 
 }
