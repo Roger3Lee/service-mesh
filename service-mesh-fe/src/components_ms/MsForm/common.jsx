@@ -80,20 +80,30 @@ export default {
   },
   defaultMethods: {
     evaluateCondition(value) {
-      if (typeof value === "function") {
-        return value.apply(this);
-      } else if (typeof value === "string" && value in this) {
-        if (typeof this[value] == "function") {
-          return this[value].apply(this);
-        } else {
+      try {
+        if (typeof value === 'boolean') {
           return value;
+        } else if (typeof value === "function") {
+          return value.apply(this);
+        } else if (typeof value === 'string') {
+          if (value in this) {
+            if (typeof this[value] == "function") {
+              return this[value].apply(this);
+            } else {
+              return value;
+            }
+          } else {
+            let f = new Function(`with(this.modelData){return ${value}}`)
+            console.log(f)
+            return f.call();
+          }
         }
       }
-    },
-    valueChange(newValue, oldValue) {
-      // console.log(this.controlType, newValue, oldValue, arguments);
-      this.$emit("changed", this.name, newValue);
-    },
+      catch (error) {
+        console.log(value + "execute error.")
+        return true;
+      }
+    }
   },
   randomString,
 };

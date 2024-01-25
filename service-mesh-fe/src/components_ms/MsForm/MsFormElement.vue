@@ -1,9 +1,9 @@
 <template>
-  <div :style="{ 'grid-column-start': 'span ' + spanRange }">
-    <ms-input v-if="controlType === 'input'" v-bind="$props" @changed="valueChange" />
-    <ms-date-picker v-if="controlType === 'date'" v-bind="$props" @changed="valueChange" />
-    <ms-select v-if="controlType === 'select'" v-bind="$props" @changed="valueChange" />
-    <ms-checkbox v-if="controlType === 'checkbox'" v-bind="$props" @changed="valueChange" />
+  <div :style="{ 'grid-column-start': 'span ' + spanRange }" v-if="evaluateCondition(condition)">
+    <ms-input v-if="controlType === 'input'" v-bind="$props" />
+    <ms-date-picker v-if="controlType === 'date'" v-bind="$props" />
+    <ms-select v-if="controlType === 'select'" v-bind="$props" />
+    <ms-checkbox v-if="controlType === 'checkbox'" v-bind="$props" />
   </div>
 </template>
 <script lang="ts">
@@ -12,6 +12,10 @@ import MsDatePicker from "./MsDatePicker.vue"
 import MsSelect from "./MsSelect.vue"
 import MsCheckbox from "./MsCheckbox.vue"
 import common from "./common.jsx"
+
+const defaultProp = {
+  condition: true
+}
 
 export default {
   name: "ms-form-element",
@@ -23,12 +27,12 @@ export default {
   },
   props: common.elementProps,
   data() {
-    return { ...this.$props.element, ...{ modelData: this.$props.model } }
+    return {
+      ...defaultProp, ...this.$props.element, ...{ modelData: this.$props.model }
+    }
   },
   methods: {
-    valueChange(code, value) {
-      this.$emit("changed", code, value)
-    }
+    ...common.defaultMethods
   }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
-  <el-form-item v-if="evaluateCondition(condition)" :prop="name" :rules="rules" :label="label" label-position="left"
-    :label-width="labelWidth">
-    <el-select v-model="modelData[name]" v-bind="$data" @change="valueChange">
+  <el-form-item :prop="name" :rules="rules" :label="label" label-position="left" :label-width="labelWidth">
+    <el-select v-model="modelData[name]" v-bind="$data">
       <el-option v-for="item in sources" :key="item.value" :label="item.label" :value="item.value" />
     </el-select>
   </el-form-item>
@@ -9,9 +8,7 @@
 <script>
 import common from "./common.jsx"
 const defaultProp = {
-  condition: () => {
-    return 1 === 1
-  },
+  condition: true,
   name: "select",
   labelWidth: "80px",
   filterable: true,
@@ -47,9 +44,6 @@ export default {
       ...{ modelData: this.$props.model },
       ...{ rules: common.decorationValidateRule(this.$props, this.element?.rules) }
     }
-  },
-  methods: {
-    ...common.defaultMethods
   }
 }
 </script>

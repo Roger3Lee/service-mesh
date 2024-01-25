@@ -1,19 +1,12 @@
 <template>
-  <el-form-item v-if="evaluateCondition(condition)" :prop="name" :rules="rules" :label-width="labelWidth">
+  <el-form-item :prop="name" :rules="rules" :label-width="labelWidth">
     <template v-if="type === 'single'">
-      <el-checkbox v-bind="$data" v-model="modelData[name]" @change="valueChange">{{ label }}</el-checkbox>
+      <el-checkbox v-bind="$data" v-model="modelData[name]">{{ label }}</el-checkbox>
     </template>
     <template v-else>
-      <el-checkbox-group v-model="modelData[name]" @change="valueChange">
-        <el-checkbox
-          v-for="(child, index) in children"
-          :key="index"
-          :disabled="disabled"
-          :true-label="child.trueLabel"
-          :false-label="child.falseLabel"
-          :label="child.value || child.name"
-          >{{ child.label }}</el-checkbox
-        >
+      <el-checkbox-group v-model="modelData[name]">
+        <el-checkbox v-for="(child, index) in children" :key="index" :disabled="disabled" :true-label="child.trueLabel"
+          :false-label="child.falseLabel" :label="child.value || child.name">{{ child.label }}</el-checkbox>
       </el-checkbox-group>
     </template>
   </el-form-item>
@@ -21,9 +14,7 @@
 <script>
 import common from "./common.jsx"
 const defaultProp = {
-  condition: () => {
-    return 1 === 1
-  },
+  condition: true,
   name: "checkbox",
   labelWidth: "80px",
   disabled: false,

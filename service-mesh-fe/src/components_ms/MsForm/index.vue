@@ -4,7 +4,7 @@
       <div class="grid-container"
         :style="{ 'grid-template-columns': 'repeat(' + layoutCol + ',' + layoutColWidth + ')' }">
         <ms-form-element v-for="(element, index) in elements" :key="index" :element="elementItem(element)" :model="model"
-          :validators="$props.validators" @changed="valueChange" />
+          :validators="$props.validators" />
       </div>
       <el-form-item :style="{ 'margin-left': labelWidth }">
         <el-button v-for="(btn, index) in buttons" :key="index" v-bind="btn"
@@ -67,7 +67,7 @@ export default {
       }
     })
     return {
-      ...fromData, ...{
+      ...fromData, ...{ _exp: true }, ...{
         model: new Proxy({ ...fromData.data, ...dataExt }, {
           set(target, property, value, receiver) {
             if ("changed" in target) {
@@ -78,6 +78,19 @@ export default {
           }
         })
       }
+    }
+  },
+  watch: {
+    model: {
+      handler(newVal, oldVal) {
+        // 对比新旧值找出改动部分  
+        // this.findChanges(newVal, oldVal);
+        debugger;
+        if (this._exp) {
+          this.$forceUpdate();
+        }
+      },
+      deep: true,
     }
   },
   methods: {
@@ -112,11 +125,7 @@ export default {
         //reset form
         this.$refs[this.$props.formId].resetFields()
       }
-      this.$emit(eventName, this.data)
-    },
-    valueChange(code, value) {
-      this.data[code] = value
-      // console.log("data:", this.data)
+      this.$emit(eventName, this.model)
     }
   },
   computed: {
