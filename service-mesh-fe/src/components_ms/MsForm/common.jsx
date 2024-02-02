@@ -31,11 +31,6 @@ export default {
     },
   },
   elementProps: {
-    refreshElement: {
-      default: [],
-      type: Array,
-      require: true
-    },
     element: {
       default: null,
       type: Object,

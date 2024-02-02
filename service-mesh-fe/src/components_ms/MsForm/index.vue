@@ -68,7 +68,6 @@ export default {
     })
     return {
       ...fromData,
-      refreshElement: [],
       ...{ formId: this.$props.formId },
       ...{
         model: new Proxy({ ...fromData.data, ...dataExt }, {
