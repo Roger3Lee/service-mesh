@@ -147,7 +147,6 @@ export default {
         ]
       },
       {
-        condition: "code==='1'",
         name: "name",
         label: "名称",
         placeholder: "名称",
