@@ -34,9 +34,6 @@ export default {
       ...{ modelData: this.$props.model },
       ...{ rules: common.decorationValidateRule(this.$props, this.element?.rules) }
     }
-  },
-  methods: {
-    ...common.defaultMethods
   }
 }
 </script>

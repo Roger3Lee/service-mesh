@@ -28,11 +28,26 @@ export default {
   props: common.elementProps,
   data() {
     return {
-      ...defaultProp, ...this.$props.element, ...{ modelData: this.$props.model }
+      ...defaultProp, ...this.$props.element
     }
   },
   methods: {
-    ...common.defaultMethods
+    evaluateCondition(value) {
+      try {
+        if (typeof value === 'boolean') {
+          return value;
+        } else if (typeof value === "function") {
+          return value.apply(this);
+        } else if (typeof value === 'string') {
+          let f = new Function(`with(this){return ${value}}`)
+          return f.call(this.model);
+        }
+      }
+      catch (error) {
+        console.log(value + "execute error.", error)
+        return false;
+      }
+    }
   }
 }
 </script>

@@ -31,6 +31,11 @@ export default {
     },
   },
   elementProps: {
+    refreshElement: {
+      default: [],
+      type: Array,
+      require: true
+    },
     element: {
       default: null,
       type: Object,
@@ -77,33 +82,6 @@ export default {
       }
     }
     return formData;
-  },
-  defaultMethods: {
-    evaluateCondition(value) {
-      try {
-        if (typeof value === 'boolean') {
-          return value;
-        } else if (typeof value === "function") {
-          return value.apply(this);
-        } else if (typeof value === 'string') {
-          if (value in this) {
-            if (typeof this[value] == "function") {
-              return this[value].apply(this);
-            } else {
-              return value;
-            }
-          } else {
-            let f = new Function(`with(this.modelData){return ${value}}`)
-            console.log(f)
-            return f.call();
-          }
-        }
-      }
-      catch (error) {
-        console.log(value + "execute error.")
-        return true;
-      }
-    }
   },
   randomString,
 };

@@ -67,7 +67,10 @@ export default {
       }
     })
     return {
-      ...fromData, ...{ _exp: true }, ...{
+      ...fromData,
+      refreshElement: [],
+      ...{ formId: this.$props.formId },
+      ...{
         model: new Proxy({ ...fromData.data, ...dataExt }, {
           set(target, property, value, receiver) {
             if ("changed" in target) {
@@ -78,19 +81,6 @@ export default {
           }
         })
       }
-    }
-  },
-  watch: {
-    model: {
-      handler(newVal, oldVal) {
-        // 对比新旧值找出改动部分  
-        // this.findChanges(newVal, oldVal);
-        debugger;
-        if (this._exp) {
-          this.$forceUpdate();
-        }
-      },
-      deep: true,
     }
   },
   methods: {
